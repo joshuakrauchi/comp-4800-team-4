@@ -18,13 +18,20 @@ const UserMap = () => {
   const tryWatchLocation = () => {
     if (!navigator.geolocation) return;
 
+    if (!userPin) {
+      let newUserPin = createPinLayer(0, 0, "me", circleRed);
+      setUserPin(newUserPin);
+      map.addLayer(newUserPin);
+      return;
+    }
+
     // Update the location if given permission.
     navigator.geolocation.watchPosition(updateLocation);
   };
 
   const updateLocation = (currentPosition) => {
     let coords = currentPosition.coords;
-    map.addLayer(createPinLayer(coords.longitude, coords.latitude, "me", circleRed));
+    userPin.getSource().getFeatures()[0].getGeometry().setCoordinates(fromLonLat([coords.longitude, coords.latitude]));
   };
 
   const addBadgePins = () => {

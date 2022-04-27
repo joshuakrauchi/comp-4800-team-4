@@ -11,9 +11,7 @@ export default function LearnMore() {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: 'rgb(66, 162, 175)',
-        borderRadius: 10,
-        position: 'absolute',
-        bottom: 20
+        borderRadius: 10
     },
     text: {
         color: 'white',

@@ -1,7 +1,7 @@
+import Feature from "ol/Feature";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { Icon, Style } from "ol/style";
-import Feature from "ol/Feature";
 import { Point } from "ol/geom";
 import { fromLonLat } from "ol/proj";
 
@@ -28,6 +28,6 @@ const createPinLayer = (lon, lat, name, image) => {
     style: pinStyle,
     name: name,
   });
-}
+};
 
 export default createPinLayer;

@@ -9,44 +9,25 @@ import OSM from "ol/source/OSM";
 import { fromLonLat } from "ol/proj";
 import createPinLayer from "./utilities/createPinLayer";
 
-const locationString = "location";
-
 const UserMap = () => {
   const [map, setMap] = useState();
   const [userPin, setUserPin] = useState();
   const mapElement = useRef();
 
-  // Return true if the user reveals their location.
-  const tryGetLocation = () => {
+  // Try to get the user's position. If allowed, update their position as much as possible.
+  const tryWatchLocation = () => {
     if (!navigator.geolocation) return;
 
-    if (sessionStorage.getItem(locationString)) {
-      updateLocation();
-      setInterval(updateLocation, 5000);
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      // On success.
-      (position) => {
-        let coords = position.coords;
-        let coordsObject = {
-          lon: coords.longitude,
-          lat: coords.latitude,
-        };
-        sessionStorage.setItem(locationString, JSON.stringify(coordsObject));
-        updateLocation();
-        setInterval(updateLocation, 5000);
-      }
-    );
+    // Update the location if given permission.
+    navigator.geolocation.watchPosition(updateLocation);
   };
 
-  const updateLocation = () => {
-    let coordsString = sessionStorage.getItem(locationString);
-    let coords = JSON.parse(coordsString);
-    map.addLayer(createPinLayer(coords.lon, coords.lat, "me", circleRed));
+  const updateLocation = (currentPosition) => {
+    let coords = currentPosition.coords;
+    map.addLayer(createPinLayer(coords.longitude, coords.latitude, "me", circleRed));
   };
 
-  const addPins = () => {
+  const addBadgePins = () => {
     Object.keys(pinData).forEach((key) => {
       let name = key;
       let crab = pinData[key];
@@ -78,8 +59,8 @@ const UserMap = () => {
       return;
     }
 
-    addPins();
-    tryGetLocation();
+    addBadgePins();
+    tryWatchLocation();
   });
 
   return <div ref={mapElement} style={{ height: "600px", width: "100%" }}></div>;

@@ -52,11 +52,17 @@ const UserMap = () => {
         }),
       ],
       view: new View({
-        center: fromLonLat([37.41, 8.82]),
-        zoom: 4,
+        center: [26371208.304614782, 6321386.5232699495],
+        zoom: 19,
+        minZoom: 18.8,
+        constrainOnlyCenter: true,
+        extent: [26370907.255707346, 6321574.382779852, 26371437.051941108, 6321182.956882908]
+        // 26371252.27159731, 6321397.270212819
       }),
     });
-
+    initialMap.on("click", function(e) {
+      console.log(e.coordinate);
+    })
     setMap(initialMap);
   };
 

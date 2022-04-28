@@ -3,14 +3,16 @@ import tailwind from 'tailwind-rn';
 
 import InfoBox from './components/InfoBox';
 import { InfoBoxItem_1 } from './utilities/constants';
-import LearnMore from './components/LearnMore';
+import Button from './components/Button';
+import IconButton from './components/IconButton';
 
 export default function App() {
   return (
     <SafeAreaView style={[tailwind('flex-auto items-center justify-end flex-col'), styles.safeview]}>
       <View style={styles.infoview}>
+        <IconButton title={'Find Badge'}></IconButton>
         <InfoBox information={InfoBoxItem_1}/>
-        <LearnMore />
+        <Button title={'Learn More'}/>
       </View>
     </SafeAreaView>
   );

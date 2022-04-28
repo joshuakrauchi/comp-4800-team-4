@@ -16,11 +16,14 @@ const styles = StyleSheet.create({
         width: '70%',
         borderRadius: 10,
         paddingHorizontal: 20,
-        paddingVertical: 22,
+        paddingTop: 22,
+        paddingBottom: 11,
         marginBottom: 30
     },
     text: {
         textAlign: 'center',
-        color: 'rgb(64, 104, 142)'
+        color: 'rgb(64, 104, 142)',
+        paddingBottom: 11,
+        fontSize: 16
     }
 });

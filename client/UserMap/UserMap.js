@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { View, Image, StyleSheet } from "react-native";
-
+import "ol/ol.css";
 
 import { tryWatchLocation, addBadgePins, addUserPin, createMap } from "./mapUtilities";
 import sentinelsLabel from "../images/sentinelsLabel.png";

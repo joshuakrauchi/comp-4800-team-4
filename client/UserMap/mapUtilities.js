@@ -89,8 +89,12 @@ const createMap = (mapElement) => {
       }),
     ],
     view: new MapView({
-      center: fromLonLat([37.41, 8.82]),
-      zoom: 4,
+      center: [26371208.304614782, 6321386.5232699495],
+        zoom: 19,
+        minZoom: 18.8,
+        constrainOnlyCenter: true,
+        extent: [26370907.255707346, 6321082, 26371437.9, 6321574]
+        // 26371252.27159731, 6321397.270212819
     }),
     controls: mapControls,
   });

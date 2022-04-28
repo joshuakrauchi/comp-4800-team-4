@@ -11,8 +11,8 @@ export default function App() {
     <SafeAreaView style={[tailwind('flex-auto items-center justify-end flex-col'), styles.safeview]}>
       <View style={styles.infoview}>
         <IconButton title={'Find Badge'}></IconButton>
-        <InfoBox information={InfoBoxItem_1}/>
-        <Button title={'Learn More'}/>
+        <InfoBox information={InfoBoxItem_1} />
+        <Button title={'Learn More'} />
       </View>
     </SafeAreaView>
   );

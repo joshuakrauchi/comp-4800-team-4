@@ -1,6 +1,6 @@
 import { SafeAreaView, Text, View } from "react-native";
 import tailwind from "tailwind-rn";
-import UserMap from "./UserMap";
+import UserMap from "./UserMap/UserMap";
 
 export default function App() {
   return (

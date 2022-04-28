@@ -4,7 +4,7 @@ import crab2 from "../images/crab2.png";
 import crab3 from "../images/crab3.png";
 import crab4 from "../images/crab4.png";
 
-const pinData = {
+const pinData: object = {
   "Crab 1": {
     lon: -123.103767,
     lat: 49.273251,

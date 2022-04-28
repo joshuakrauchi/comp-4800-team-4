@@ -8,19 +8,19 @@ import OSM from "ol/source/OSM";
 import { fromLonLat } from "ol/proj";
 import { Attribution, defaults as defaultControls } from "ol/control";
 import { Icon, Style } from "ol/style";
-import { Point } from "ol/geom";
+import { Point, Geometry } from "ol/geom";
 
 import pinData from "../data/pinData";
 import pinImage from "../images/pinImage.png";
 
 // Create a pin vector image layer for adding to the map.
-const createPinLayer = (lon, lat, name, image) => {
+const createPinLayer = (lon: number, lat: number, image: string): VectorLayer<VectorSource<Point>> => {
   let coords = fromLonLat([lon, lat]);
-  const pinFeature = new Feature({
+  const pinFeature = new Feature<Point>({
     geometry: new Point(coords),
   });
 
-  const pinSource = new VectorSource({
+  const pinSource = new VectorSource<Point>({
     features: [pinFeature],
   });
 
@@ -32,15 +32,14 @@ const createPinLayer = (lon, lat, name, image) => {
     }),
   });
 
-  return new VectorLayer({
+  return new VectorLayer<VectorSource<Point>>({
     source: pinSource,
     style: pinStyle,
-    name: name,
   });
 };
 
 // Try to get the user's position. If allowed, update their position as much as possible.
-const tryWatchLocation = (userPin) => {
+const tryWatchLocation = (userPin: VectorLayer<VectorSource<Point>>): void => {
   if (!navigator.geolocation) return;
 
   // Update the location if given permission.
@@ -49,7 +48,7 @@ const tryWatchLocation = (userPin) => {
   });
 };
 
-const updateLocation = (currentPosition, userPin) => {
+const updateLocation = (currentPosition: GeolocationPosition, userPin: VectorLayer<VectorSource<Point>>): void => {
   let coords = currentPosition.coords;
   userPin
     .getSource()
@@ -58,18 +57,17 @@ const updateLocation = (currentPosition, userPin) => {
     .setCoordinates(fromLonLat([coords.longitude, coords.latitude]));
 };
 
-const addBadgePins = (map) => {
-  Object.keys(pinData).forEach((key) => {
-    let name = key;
-    let crab = pinData[key];
+const addBadgePins = (map: Map): void => {
+  Object.keys(pinData).forEach((key: string) => {
+    let element = pinData[key];
 
-    map.addLayer(createPinLayer(crab.lon, crab.lat, name, crab.pinImage));
-    map.addLayer(createPinLayer(crab.lon, crab.lat - 0.0001, name, crab.crabImage));
+    map.addLayer(createPinLayer(element.lon, element.lat, element.pinImage));
+    map.addLayer(createPinLayer(element.lon, element.lat - 0.0001, element.crabImage));
   });
 };
 
-const addUserPin = () => {
-  return createPinLayer(0, 0, "Your Location", pinImage);
+const createUserPin = (): VectorLayer<VectorSource<Point>> => {
+  return createPinLayer(0, 0, pinImage);
 }
 
 const createMap = (mapElement) => {
@@ -99,13 +97,7 @@ const createMap = (mapElement) => {
     controls: mapControls,
   });
 
-  initialMap.on("singleclick", (event) => {
-    initialMap.forEachFeatureAtPixel(event.pixel, (feature) => {
-      console.log(feature.getGeometry().getFlatCoordinates());
-    });
-  });
-
   return initialMap;
 };
 
-export { tryWatchLocation, addBadgePins, addUserPin, createMap };
+export { tryWatchLocation, addBadgePins, createUserPin, createMap };

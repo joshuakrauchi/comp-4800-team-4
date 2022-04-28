@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "ol/ol.css"
 
-import { tryWatchLocation, addBadgePins, addUserPin, createMap } from "./mapUtilities";
+import { tryWatchLocation, addBadgePins, createUserPin, createMap } from "./mapUtilities";
 import sentinelsLabel from "../images/sentinelsLabel.png";
 
 const styles = {
@@ -24,12 +24,12 @@ const styles = {
   },
 };
 
-const UserMap = () => {
+const UserMap = (): JSX.Element => {
   const [map, setMap] = useState();
   const [userPin, setUserPin] = useState();
   const mapElement = useRef();
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!map) {
       let createdMap = createMap(mapElement);
       setMap(createdMap);
@@ -37,7 +37,7 @@ const UserMap = () => {
     }
 
     if (!userPin) {
-      let newUserPin = addUserPin(map);
+      let newUserPin = createUserPin();
       setUserPin(newUserPin);
       map.addLayer(newUserPin);
       return;

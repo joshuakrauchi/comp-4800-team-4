@@ -1,11 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { View, Image, StyleSheet } from "react-native";
-import "ol/ol.css";
+import "ol/ol.css"
 
 import { tryWatchLocation, addBadgePins, addUserPin, createMap } from "./mapUtilities";
 import sentinelsLabel from "../images/sentinelsLabel.png";
 
-const styles = StyleSheet.create({
+const styles = {
   mapContainer: {
     width: "95%",
   },
@@ -14,17 +13,16 @@ const styles = StyleSheet.create({
     height: 400,
     width: "100%",
     borderRadius: 50,
-    overflow: "hidden"
+    overflow: "hidden",
   },
   mapLabel: {
-    width: 200,
-    height: 100,
+    position: "absolute",
     zIndex: 10,
     marginLeft: 25,
-    marginBottom: -100,
-    resizeMode: "contain",
-  }
-});
+    marginTop: 25,
+    height: 50,
+  },
+};
 
 const UserMap = () => {
   const [map, setMap] = useState();
@@ -50,10 +48,10 @@ const UserMap = () => {
   });
 
   return (
-    <View style={styles.mapContainer}>
-      <Image style={styles.mapLabel} source={sentinelsLabel} />
-      <View style={styles.map} ref={mapElement} />
-    </View>
+    <div style={styles.mapContainer}>
+      <img style={styles.mapLabel} src={sentinelsLabel} />
+      <div style={styles.map} ref={mapElement} />
+    </div>
   );
 };
 

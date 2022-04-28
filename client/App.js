@@ -7,7 +7,7 @@ import LearnMore from './components/LearnMore';
 
 export default function App() {
   return (
-    <SafeAreaView style={tailwind('flex-auto items-center justify-end flex-col')}>
+    <SafeAreaView style={[tailwind('flex-auto items-center justify-end flex-col'), styles.safeview]}>
       <View style={styles.infoview}>
         <InfoBox information={InfoBoxItem_1}/>
         <LearnMore />
@@ -17,10 +17,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  safeview: {
+    backgroundColor: 'rgb(228, 242, 255)'
+  },
   infoview: {
-    borderColor: 'red',
-    borderStyle: 'solid',
-    borderWidth: 1,
     marginBottom: 10
   }
 });

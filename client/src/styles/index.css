@@ -11,7 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body * {
+body > * {
   display: flex;
 }
 

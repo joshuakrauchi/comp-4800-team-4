@@ -12,7 +12,11 @@ import { Point } from "ol/geom";
 
 import pinData from "../../data/pinData";
 import pinImage from "../../images/pinImage.png";
-import React from "react";
+
+const MAP_INITIAL_ZOOM = 16;
+const MAP_MINIMUM_ZOOM = 2;
+const MAP_EXTENT = [26370907, 6321082, 26371437, 6321574];
+const MAP_INITIAL_POSITION = [-123.104, 49.2728];
 
 // Create a pin vector image layer for adding to the map.
 const createPinLayer = (lon: number, lat: number, image: string): VectorLayer<VectorSource<Point>> => {
@@ -67,7 +71,6 @@ const addBadgePins = (map: Map): void => {
     let element = pinData[key as keyof typeof pinData];
 
     map.addLayer(createPinLayer(element.lon, element.lat, element.pinImage));
-    map.addLayer(createPinLayer(element.lon, element.lat - 0.0001, element.crabImage));
   });
 };
 
@@ -75,7 +78,7 @@ const createUserPin = (): VectorLayer<VectorSource<Point>> => {
   return createPinLayer(0, 0, pinImage);
 };
 
-const createMap = (mapElement: React.MutableRefObject<undefined>): Map => {
+const createMap = (): Map => {
   // Change the default map controls to get rid of the regular attributions
   // on the bottom right and replace them with a collapsible button.
   const attribution = new Attribution({
@@ -89,21 +92,21 @@ const createMap = (mapElement: React.MutableRefObject<undefined>): Map => {
   });
 
   const mapView = new MapView({
-    center: [26371208.304614782, 6321386.5232699495],
-    zoom: 19,
-    minZoom: 18.8,
+    center: fromLonLat(MAP_INITIAL_POSITION),
+    zoom: MAP_INITIAL_ZOOM,
+    minZoom: MAP_MINIMUM_ZOOM,
     constrainOnlyCenter: true,
-    extent: [26370907.255707346, 6321082, 26371437.9, 6321574],
+    extent: MAP_EXTENT,
   });
 
-  const initialMap = new Map({
-    target: mapElement.current,
+  const createdMap = new Map({
+    target: "dummy",
     layers: [mapLayer],
     view: mapView,
     controls: mapControls,
   });
 
-  return initialMap;
+  return createdMap;
 };
 
 export { tryWatchLocation, addBadgePins, createUserPin, createMap };

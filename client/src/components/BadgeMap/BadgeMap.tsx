@@ -1,60 +1,32 @@
-import { useState, useRef, useEffect } from "react";
-import Map from "ol/Map";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
-import { Point } from "ol/geom";
-import "ol/ol.css"
+import { useRef, useEffect } from "react";
+import "ol/ol.css";
 
 import { tryWatchLocation, addBadgePins, createUserPin, createMap } from "./utilities";
 import sentinelsLabel from "../../images/sentinelsLabel.png";
+import styles from "./styles";
 
-const styles = {
-  mapContainer: {
-    width: "95%",
-  },
-  map: {
-    zIndex: 0,
-    height: 400,
-    width: "100%",
-    borderRadius: 50,
-    overflow: "hidden",
-  },
-  mapLabel: {
-    position: "absolute",
-    zIndex: 10,
-    marginLeft: 25,
-    marginTop: 25,
-    height: 50,
-  },
-};
+const MAP_HEIGHT = 400;
 
 const BadgeMap = (): JSX.Element => {
-  const [map, setMap] = useState(new Map({}));
-  const [userPin, setUserPin] = useState(new VectorLayer<VectorSource<Point>>());
-  const mapElement = useRef();
+  const map = useRef(createMap());
+  const userPin = useRef(createUserPin());
+  const initialized = useRef(false);
 
   useEffect((): void => {
-    if (!map) {
-      let createdMap = createMap(mapElement);
-      setMap(createdMap);
-      return;
-    }
+    if (initialized.current) return;
 
-    if (!userPin) {
-      let newUserPin = createUserPin();
-      setUserPin(newUserPin);
-      map.addLayer(newUserPin);
-      return;
-    }
+    map.current.setTarget("map");
+    map.current.addLayer(userPin.current);
+    addBadgePins(map.current);
+    tryWatchLocation(userPin.current);
 
-    addBadgePins(map);
-    tryWatchLocation(userPin);
-  });
+    initialized.current = true;
+  }, []);
 
   return (
-    <div style={styles.mapContainer}>
-      <img src={sentinelsLabel} alt="Sentinels of Change Logo" />
-      <div style={styles.map} ref={mapElement.current} />
+    <div className={styles.mapContainer}>
+      <img className={styles.mapLabel} src={sentinelsLabel} alt="Sentinels of Change Logo" />
+      <div id="map" style={{ width: "100%", height: MAP_HEIGHT }} className={styles.map} />
     </div>
   );
 };

@@ -4,8 +4,8 @@ interface IInfoBoxProp {
 
 const IconBox = (props: IInfoBoxProp): JSX.Element => {
   const styles = {
-    div: 'bg-gray-300 w-[70%] rounded px-20 pt-10 pb-5 mb-30 flex-col',
-    text: 'text-center text-sky-500 pb-5 text-base',
+    div: "bg-gray-300 w-[70%] rounded px-20 pt-10 pb-5 mb-30 flex-col",
+    text: "text-center text-sky-500 pb-5 text-base",
   };
 
   return (

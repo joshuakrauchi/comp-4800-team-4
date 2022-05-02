@@ -1,14 +1,14 @@
-import { useRef, useEffect } from 'react';
-import 'ol/ol.css';
+import { useRef, useEffect } from "react";
+import "ol/ol.css";
 
 import {
   tryWatchLocation,
   addBadgePins,
   createUserPin,
   createMap,
-} from './utilities';
-import sentinelsLabel from '../../images/sentinelsLabel.png';
-import styles from './styles';
+} from "./utilities";
+import sentinelsLabel from "../../images/sentinelsLabel.png";
+import styles from "./styles";
 
 const MAP_HEIGHT = 400;
 
@@ -20,7 +20,7 @@ const BadgeMap = (): JSX.Element => {
   useEffect((): void => {
     if (initialized.current) return;
 
-    map.current.setTarget('map');
+    map.current.setTarget("map");
     map.current.addLayer(userPin.current);
     addBadgePins(map.current);
     tryWatchLocation(userPin.current);
@@ -33,11 +33,11 @@ const BadgeMap = (): JSX.Element => {
       <img
         className={styles.mapLabel}
         src={sentinelsLabel}
-        alt='Sentinels of Change Logo'
+        alt="Sentinels of Change Logo"
       />
       <div
-        id='map'
-        style={{ width: '100%', height: MAP_HEIGHT }}
+        id="map"
+        style={{ width: "100%", height: MAP_HEIGHT }}
         className={styles.map}
       />
     </div>

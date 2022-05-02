@@ -4,9 +4,9 @@ export interface IButtonProp {
 
 const Button = (props: IButtonProp): JSX.Element => {
   const styles = {
-    div: 'justify-center justify-self-center',
+    div: "justify-center justify-self-center",
     button:
-      'bg-teal-600 rounded text-white text-lg font-semibold px-12 py-3 h-fit',
+      "bg-teal-600 rounded text-white text-lg font-semibold px-12 py-3 h-fit",
   };
 
   return (

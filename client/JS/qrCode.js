@@ -1,7 +1,7 @@
 import React from "react";
 import { createSearchParams, useSearchParams } from "react-router-dom";
 
-const qrCode = ({ error }) => {
+const qrCode = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     /*
@@ -23,13 +23,20 @@ const qrCode = ({ error }) => {
     };
 
     localStorage.setItem(searchParams, "true");
-    return (
-        <span>
-            {error
-                ? getRandomMessage(errorMessages)
-                : getRandomMessage(successMessages)}
-            {error? "Seems like you've caught this crab before!"
-                : "Let's go find the next one!"}
-        </span>  
-    );
+    if (localStorage.getItem(searchParams) == "false") {
+        return (
+            <p>
+                <span>
+                    {getRandomMessage(successMessages)}
+                </span> Let's go find the next one!
+            </p>
+        );
+    } else {
+        return (
+        <p>
+            <span>
+                {getRandomMessage(errorMessages)}
+            </span> Seems like you've caught this crab before!
+        </p>);
+    }
 };

@@ -1,17 +1,17 @@
-import Map from 'ol/Map';
-import TileLayer from 'ol/layer/Tile';
-import MapView from 'ol/View';
-import Feature from 'ol/Feature';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
-import OSM from 'ol/source/OSM';
-import { fromLonLat } from 'ol/proj';
-import { Attribution, defaults as defaultControls } from 'ol/control';
-import { Icon, Style } from 'ol/style';
-import { Point } from 'ol/geom';
+import Map from "ol/Map";
+import TileLayer from "ol/layer/Tile";
+import MapView from "ol/View";
+import Feature from "ol/Feature";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource from "ol/source/Vector";
+import OSM from "ol/source/OSM";
+import { fromLonLat } from "ol/proj";
+import { Attribution, defaults as defaultControls } from "ol/control";
+import { Icon, Style } from "ol/style";
+import { Point } from "ol/geom";
 
-import pinData from '../../data/pinData';
-import pinImage from '../../images/pinImage.png';
+import pinData from "../../data/pinData";
+import pinImage from "../../images/pinImage.png";
 
 const MAP_INITIAL_ZOOM = 16;
 const MAP_MINIMUM_ZOOM = 2;
@@ -110,7 +110,7 @@ const createMap = (): Map => {
   });
 
   const createdMap = new Map({
-    target: 'dummy',
+    target: "dummy",
     layers: [mapLayer],
     view: mapView,
     controls: mapControls,

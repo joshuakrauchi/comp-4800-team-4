@@ -3,7 +3,7 @@
 const DemoAR = () => {
     return (
         <a-scene embedded arjs='sourceType: webcam;'>
-            <a-marker-camera preset='hiro'>
+            <a-marker preset='hiro'>
                 <a-box color='orange' position='0 0.05 0' material='opacity: 1;'>
                     <a-animation 
                         attribute='rotation' 
@@ -13,7 +13,7 @@ const DemoAR = () => {
                         repeat='indefinite'>
                     </a-animation>
                 </a-box>
-            </a-marker-camera>
+            </a-marker>
         </a-scene>
     );
 };

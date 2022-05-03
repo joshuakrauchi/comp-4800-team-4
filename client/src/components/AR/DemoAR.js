@@ -4,16 +4,25 @@ const DemoAR = () => {
     return (
         // <a-scene embedded arjs='sourceType: webcam;'>
         <a-scene embedded arjs='sourceType: webcam;'>
-            <a-box color='orange' scale='0.75 0.75 0.75' position='0 0.37 0' material='opacity: 1;'>
-                {/* <a-animation 
-                    attribute='rotation' 
-                    to='360 360 0' 
-                    dur='3000' 
-                    easing='linear' 
-                    repeat='indefinite'>
-                </a-animation> */}
-            </a-box>
             <a-marker-camera preset='hiro'></a-marker-camera>
+            <a-box 
+                color='red' 
+                position='0.5 0 0' 
+                scale='1 0.2 0.2' 
+                material='opacity: 1;'>
+            </a-box>
+            <a-box 
+                color='green' 
+                position='0 0.5 0' 
+                scale='0.2 1 0.2' 
+                material='opacity: 1;'>
+            </a-box>
+            <a-box 
+                color='blue' 
+                position='0 0 0.5' 
+                scale='0.2 0.2 1' 
+                material='opacity: 1;'>
+            </a-box>
         </a-scene>
     );
 };

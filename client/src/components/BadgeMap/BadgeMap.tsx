@@ -10,7 +10,7 @@ import {
 import sentinelsLabel from "../../images/sentinelsLabel.png";
 import styles from "./styles";
 
-const MAP_HEIGHT = 400;
+const MAP_HEIGHT = "50vh";
 
 const BadgeMap = (): JSX.Element => {
   const map = useRef(createMap());

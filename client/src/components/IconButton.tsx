@@ -12,7 +12,7 @@ const IconButton = ({
 }: IconButtonProp): JSX.Element => {
   const styles = {
     div: "flex flex-row justify-center items-center mb-26",
-    image: "z-[10] mr-[-10%]",
+    image: "z-[10] mr-[-15px]",
   };
 
   return (

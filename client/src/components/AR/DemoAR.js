@@ -3,7 +3,7 @@
 const DemoAR = () => {
     return (
         // <a-scene embedded arjs='sourceType: webcam;'>
-        <a-scene embedded arjs>
+        <a-scene embedded arjs='sourceType: webcam;'>
             <a-box color='orange' scale='0.75 0.75 0.75' position='0 0.37 0' material='opacity: 1;'>
                 {/* <a-animation 
                     attribute='rotation' 

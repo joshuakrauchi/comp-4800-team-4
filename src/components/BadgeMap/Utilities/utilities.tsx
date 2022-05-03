@@ -18,7 +18,7 @@ const MAP_INITIAL_ZOOM = 16;
 const MAP_MINIMUM_ZOOM = 0;
 const MAP_MAXIMUM_ZOOM = 20;
 // UTM coordinates used below. In order from [minX, minY, maxX, maxY].
-const MAP_EXTENT = [-13706000, 6320000, -13702000, 6322300];
+const MAP_EXTENT = [-13706000, 6300000, -13602000, 6322300];
 const MAP_INITIAL_POSITION = [-13704000, 6321150];
 const PRELOAD_LEVELS = 5;
 

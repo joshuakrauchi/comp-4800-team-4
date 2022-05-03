@@ -6,11 +6,12 @@ import {
   addBadgePins,
   createUserPin,
   createMap,
-} from "./utilities";
+} from "./Utilities/utilities";
 import sentinelsLabel from "../../images/sentinelsLabel.png";
 import styles from "./styles";
 
 const MAP_HEIGHT = "50vh";
+const FOUND_BADGES = [true, false, true, false];
 
 const BadgeMap = (): JSX.Element => {
   const map = useRef(createMap());
@@ -22,7 +23,7 @@ const BadgeMap = (): JSX.Element => {
 
     map.current.setTarget("map");
     map.current.addLayer(userPin.current);
-    addBadgePins(map.current);
+    addBadgePins(map.current, FOUND_BADGES);
     tryWatchLocation(userPin.current);
 
     initialized.current = true;

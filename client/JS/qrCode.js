@@ -5,7 +5,7 @@ const qrCode = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     /*
-    !! set in the main page!!
+    !! set in the main page !!
 
     -> false = not scanned
     localStorage.setItem("badgeCrab1", "false");
@@ -22,21 +22,22 @@ const qrCode = () => {
         return messages[index];
     };
 
-    localStorage.setItem(searchParams, "true");
     if (localStorage.getItem(searchParams) == "false") {
+        localStorage.setItem(searchParams, "true");
         return (
             <p>
                 <span>
-                    {getRandomMessage(successMessages)}
+                    {getRandomMessage(successMessages)} 
                 </span> Let's go find the next one!
             </p>
         );
-    } else {
-        return (
+    }
+
+    return (
         <p>
             <span>
                 {getRandomMessage(errorMessages)}
             </span> Seems like you've caught this crab before!
-        </p>);
-    }
+        </p>
+    );
 };

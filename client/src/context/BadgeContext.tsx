@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 const BadgeContext = createContext({});
 
@@ -15,7 +15,7 @@ export enum BadgeNames {
 //it is at the highest level of the DOM.
 const BadgeProvider = (props: any): JSX.Element => {
   const storage: BadgeNames[] = JSON.parse(
-    localStorage.getItem("badges") || "{badges: []}"
+    localStorage.getItem("badges") || JSON.stringify({ badges: [] })
   ).badges;
   const [Badges, setBadges] = useState<BadgeNames[]>(storage);
 
@@ -25,7 +25,7 @@ const BadgeProvider = (props: any): JSX.Element => {
     localStorage.setItem("badges", JSON.stringify({ badges: Badges }));
   };
 
-  //Its an object for scalability, in case you want to add more!
+  //It's an object for scalability, in case you want to add more!
   const BadgeContextValue = {
     AddBadge,
   };

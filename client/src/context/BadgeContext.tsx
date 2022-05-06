@@ -19,12 +19,12 @@ const BadgeProvider = (props: any): JSX.Element => {
     ||
     JSON.stringify({badges: []})
   ).badges;
-  const [Badges, setBadges] = useState<BadgeNames[]>(storage);
+  const [badges, setBadges] = useState<BadgeNames[]>(storage);
 
   const AddBadge = (badgeName: BadgeNames): void => {
-    if (Badges.includes(badgeName)) return;
-    setBadges([...Badges, badgeName]);
-    localStorage.setItem("badges", JSON.stringify({ badges: Badges }));
+    if (badges.includes(badgeName)) return;
+    setBadges([...badges, badgeName]);
+    localStorage.setItem("badges", JSON.stringify({ badges: badges }));
   };
 
   //It's an object for scalability, in case you want to add more!

@@ -9,16 +9,18 @@ import { fromLonLat } from "ol/proj";
 import { Attribution, defaults as defaultControls } from "ol/control";
 import { Icon, Style } from "ol/style";
 import { Point } from "ol/geom";
+import { Coordinate } from "ol/coordinate";
 
 import MapImageData from "./MapImageData";
 import pinData from "../../../data/pinData";
 import pinImage from "../../../images/pinImage.png";
+import { exit } from "process";
 
 const MAP_INITIAL_ZOOM = 16;
 const MAP_MINIMUM_ZOOM = 0;
 const MAP_MAXIMUM_ZOOM = 20;
 // UTM coordinates used below. In order from [minX, minY, maxX, maxY].
-const MAP_EXTENT = [-13706000, 6300000, -13602000, 6322300];
+const MAP_EXTENT = [-13706000, 6320000, -13702000, 6322300];
 const MAP_INITIAL_POSITION = [-13704000, 6321150];
 const PRELOAD_LEVELS = 5;
 
@@ -77,7 +79,8 @@ const updateLocation = (
     ?.setCoordinates(fromLonLat([coords.longitude, coords.latitude]));
 };
 
-const addBadgePins = (map: Map, foundBadges: boolean[]): void => {
+const createBadgePins = (foundBadges: boolean[]): VectorLayer<VectorSource<Point>>[] => {
+  let pinLayers = [];
   for (let i = 0; i < pinData.length && i < foundBadges.length; ++i) {
     let pin = pinData[i];
     let pinLayer;
@@ -89,8 +92,10 @@ const addBadgePins = (map: Map, foundBadges: boolean[]): void => {
       pinLayer = createPinLayer(pin.lon, pin.lat, pin.pinImage);
     }
 
-    map.addLayer(pinLayer);
+    pinLayers.push(pinLayer);
   }
+
+  return pinLayers;
 };
 
 const createUserPin = (): VectorLayer<VectorSource<Point>> => {
@@ -132,4 +137,37 @@ const createMap = (): Map => {
   return createdMap;
 };
 
-export { tryWatchLocation, addBadgePins, createUserPin, createMap };
+const getDistanceSquared = (point1: Coordinate, point2: Coordinate): number => {
+  const x1 = point1[0];
+  const y1 = point1[1];
+  const x2 = point2[0];
+  const y2 = point2[1];
+
+  return Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2);
+}
+
+const getClosestPinIndex = (reference: VectorLayer<VectorSource<Point>>, destinations: VectorLayer<VectorSource<Point>>[]): number => {
+  const referenceCoords = reference.getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+  let destinationCoords = destinations[0].getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+  if (!referenceCoords || !destinationCoords) return -1;
+
+  let shortestDistanceIndex = 0;
+  let shortestDistance = getDistanceSquared(referenceCoords, destinationCoords);
+
+  for (let i = 1; i < destinations.length; ++i) {
+    destinationCoords = destinations[i].getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+
+    if (!destinationCoords) return -1;
+
+    let currentDistance = getDistanceSquared(referenceCoords, destinationCoords);
+    
+    if (currentDistance < shortestDistance) {
+      shortestDistance = currentDistance;
+      shortestDistanceIndex = i;
+    }
+  }
+
+  return shortestDistanceIndex;
+}
+
+export { tryWatchLocation, createBadgePins, createUserPin, createMap, getClosestPinIndex };

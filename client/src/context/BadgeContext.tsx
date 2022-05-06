@@ -14,11 +14,14 @@ export enum BadgeNames {
 //The children/props of this element can be anything because
 //it is at the highest level of the DOM.
 const BadgeProvider = (props: any): JSX.Element => {
-  const [Badges, setBadges] = useState<BadgeNames[]>([]);
+
+  const storage: BadgeNames[] = JSON.parse(localStorage.getItem('badges') || '{badges: []}').badges;
+  const [Badges, setBadges] = useState<BadgeNames[]>(storage);
 
   const AddBadge = (badgeName: BadgeNames): void => {
     if (Badges.includes(badgeName)) return;
     setBadges([...Badges, badgeName]);
+    localStorage.setItem('badges', JSON.stringify({badges: Badges}));
   };
 
   //Its an object for scalability, in case you want to add more!

@@ -1,8 +1,7 @@
-import Button, { IButtonProp } from "./Button";
+import Button, { ButtonProp } from "./Button";
 import Missing from "../images/missing.png";
 
-class IconButtonProp implements IButtonProp {
-  text?: string;
+class IconButtonProp extends ButtonProp {
   icon?: string;
 }
 

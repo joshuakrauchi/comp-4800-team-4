@@ -1,8 +1,8 @@
-interface IInfoBoxProp {
+abstract class InfoBoxProp {
   information?: string[];
 }
 
-const IconBox = (props: IInfoBoxProp): JSX.Element => {
+const IconBox = (props: InfoBoxProp): JSX.Element => {
   const styles = {
     div: "bg-gray-300 rounded px-20 pt-10 pb-5 mb-30 flex-col",
     text: "text-center text-sky-500 pb-5 text-base",

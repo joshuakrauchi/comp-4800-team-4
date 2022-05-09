@@ -1,8 +1,8 @@
-export interface IButtonProp {
+export abstract class ButtonProp {
   text?: string;
 }
 
-const Button = (props: IButtonProp): JSX.Element => {
+const Button = (props: ButtonProp): JSX.Element => {
   const styles = {
     div: "justify-center justify-self-center",
     button:

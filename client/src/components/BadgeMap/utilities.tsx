@@ -14,9 +14,10 @@ import pinData from "../../data/pinData";
 import pinImage from "../../images/pinImage.png";
 
 const MAP_INITIAL_ZOOM = 16;
-const MAP_MINIMUM_ZOOM = 2;
-const MAP_EXTENT = [26370907, 6321082, 26371437, 6321574];
-const MAP_INITIAL_POSITION = [-123.104, 49.2728];
+const MAP_MINIMUM_ZOOM = 0;
+// UTM coordinates used below. In order from [minX, minY, maxX, maxY].
+const MAP_EXTENT = [-13706000, 6320000, -13702000, 6322300];
+const MAP_INITIAL_POSITION = [-13704000, 6321150];
 
 // Create a pin vector image layer for adding to the map.
 const createPinLayer = (
@@ -102,10 +103,9 @@ const createMap = (): Map => {
   });
 
   const mapView = new MapView({
-    center: fromLonLat(MAP_INITIAL_POSITION),
+    center: MAP_INITIAL_POSITION,
     zoom: MAP_INITIAL_ZOOM,
     minZoom: MAP_MINIMUM_ZOOM,
-    constrainOnlyCenter: true,
     extent: MAP_EXTENT,
   });
 

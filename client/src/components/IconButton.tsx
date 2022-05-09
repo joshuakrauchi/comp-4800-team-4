@@ -1,8 +1,7 @@
-import Button, { IButtonProp } from "./Button";
+import Button, { ButtonProp } from "./Button";
 import Missing from "../images/missing.png";
 
-class IconButtonProp implements IButtonProp {
-  text?: string;
+class IconButtonProp extends ButtonProp {
   icon?: string;
 }
 
@@ -12,7 +11,7 @@ const IconButton = ({
 }: IconButtonProp): JSX.Element => {
   const styles = {
     div: "flex flex-row justify-center items-center mb-26",
-    image: "z-[10] mr-[-10%]",
+    image: "z-[10] mr-[-15px]",
   };
 
   return (

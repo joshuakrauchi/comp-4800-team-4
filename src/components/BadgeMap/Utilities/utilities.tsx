@@ -78,7 +78,9 @@ const updateLocation = (
     ?.setCoordinates(fromLonLat([coords.longitude, coords.latitude]));
 };
 
-const createBadgePins = (foundBadges: boolean[]): VectorLayer<VectorSource<Point>>[] => {
+const createBadgePins = (
+  foundBadges: boolean[]
+): VectorLayer<VectorSource<Point>>[] => {
   let pinLayers = [];
   for (let i = 0; i < pinData.length && i < foundBadges.length; ++i) {
     let pin = pinData[i];
@@ -113,11 +115,6 @@ const createMap = (): Map => {
     zoom: false,
   }).extend([attribution]);
 
-  const mapLayer = new TileLayer({
-    source: new OSM(),
-    preload: PRELOAD_LEVELS,
-  });
-
   const mapView = new MapView({
     center: MAP_INITIAL_POSITION,
     zoom: MAP_INITIAL_ZOOM,
@@ -128,13 +125,16 @@ const createMap = (): Map => {
 
   const createdMap = new Map({
     target: "dummy",
-    layers: [mapLayer],
+    layers: [],
     view: mapView,
     controls: mapControls,
   });
 
   return createdMap;
 };
+
+const createBackgroundLayer = (): TileLayer<OSM> =>
+  new TileLayer({ source: new OSM(), preload: PRELOAD_LEVELS });
 
 const getDistanceSquared = (point1: Coordinate, point2: Coordinate): number => {
   const x1 = point1[0];
@@ -143,22 +143,48 @@ const getDistanceSquared = (point1: Coordinate, point2: Coordinate): number => {
   const y2 = point2[1];
 
   return Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2);
-}
+};
 
-const getClosestPinIndex = (reference: VectorLayer<VectorSource<Point>>, destinations: VectorLayer<VectorSource<Point>>[]): number => {
-  const referenceCoords = reference.getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
-  let destinationCoords = destinations[0].getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+/**
+ * Gets the pin index of the pin that is located closest to the user in the world.
+ * The pin must not be found.
+ * If all pins are found, returns -1.
+ */
+const getClosestPinIndex = (
+  reference: VectorLayer<VectorSource<Point>>,
+  destinations: VectorLayer<VectorSource<Point>>[],
+  foundBadges: boolean[]
+): number => {
+  const referenceCoords = reference
+    .getSource()
+    ?.getFeatures()[0]
+    ?.getGeometry()
+    ?.getCoordinates();
+  let destinationCoords = destinations[0]
+    .getSource()
+    ?.getFeatures()[0]
+    ?.getGeometry()
+    ?.getCoordinates();
   if (!referenceCoords || !destinationCoords) return -1;
 
-  let shortestDistanceIndex = 0;
-  let shortestDistance = getDistanceSquared(referenceCoords, destinationCoords);
+  let shortestDistanceIndex = -1;
+  let shortestDistance = Number.MAX_SAFE_INTEGER;
 
-  for (let i = 1; i < destinations.length; ++i) {
-    destinationCoords = destinations[i].getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+  for (let i = 0; i < destinations.length; ++i) {
+    if (foundBadges[i]) continue;
+
+    destinationCoords = destinations[i]
+      .getSource()
+      ?.getFeatures()[0]
+      ?.getGeometry()
+      ?.getCoordinates();
 
     if (!destinationCoords) return -1;
 
-    let currentDistance = getDistanceSquared(referenceCoords, destinationCoords);
+    let currentDistance = getDistanceSquared(
+      referenceCoords,
+      destinationCoords
+    );
 
     if (currentDistance < shortestDistance) {
       shortestDistance = currentDistance;
@@ -167,6 +193,13 @@ const getClosestPinIndex = (reference: VectorLayer<VectorSource<Point>>, destina
   }
 
   return shortestDistanceIndex;
-}
+};
 
-export { tryWatchLocation, createBadgePins, createUserPin, createMap, getClosestPinIndex };
+export {
+  createBackgroundLayer,
+  tryWatchLocation,
+  createBadgePins,
+  createUserPin,
+  createMap,
+  getClosestPinIndex,
+};

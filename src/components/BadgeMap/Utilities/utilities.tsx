@@ -9,21 +9,25 @@ import { fromLonLat } from "ol/proj";
 import { Attribution, defaults as defaultControls } from "ol/control";
 import { Icon, Style } from "ol/style";
 import { Point } from "ol/geom";
+import { Coordinate } from "ol/coordinate";
 
-import pinData from "../../data/pinData";
-import pinImage from "../../images/pinImage.png";
+import MapImageData from "./MapImageData";
+import pinData from "../../../data/pinData";
+import pinImage from "../../../images/pinImage.png";
 
 const MAP_INITIAL_ZOOM = 16;
 const MAP_MINIMUM_ZOOM = 0;
+const MAP_MAXIMUM_ZOOM = 20;
 // UTM coordinates used below. In order from [minX, minY, maxX, maxY].
 const MAP_EXTENT = [-13706000, 6320000, -13702000, 6322300];
 const MAP_INITIAL_POSITION = [-13704000, 6321150];
+const PRELOAD_LEVELS = 5;
 
 // Create a pin vector image layer for adding to the map.
 const createPinLayer = (
   lon: number,
   lat: number,
-  image: string
+  image: MapImageData
 ): VectorLayer<VectorSource<Point>> => {
   let coords = fromLonLat([lon, lat]);
   const pinFeature = new Feature<Point>({
@@ -35,9 +39,9 @@ const createPinLayer = (
   });
 
   const pinImage = new Icon({
-    src: image,
-    scale: 1.0,
-    opacity: 0.85,
+    src: image.url,
+    scale: image.scale,
+    opacity: image.opacity,
   });
 
   const pinStyle = new Style({
@@ -74,16 +78,27 @@ const updateLocation = (
     ?.setCoordinates(fromLonLat([coords.longitude, coords.latitude]));
 };
 
-const addBadgePins = (map: Map): void => {
-  Object.keys(pinData).forEach((key) => {
-    let element = pinData[key as keyof typeof pinData];
+const createBadgePins = (foundBadges: boolean[]): VectorLayer<VectorSource<Point>>[] => {
+  let pinLayers = [];
+  for (let i = 0; i < pinData.length && i < foundBadges.length; ++i) {
+    let pin = pinData[i];
+    let pinLayer;
+    let found = foundBadges[i];
 
-    map.addLayer(createPinLayer(element.lon, element.lat, element.pinImage));
-  });
+    if (found) {
+      pinLayer = createPinLayer(pin.lon, pin.lat, pin.badgeImage);
+    } else {
+      pinLayer = createPinLayer(pin.lon, pin.lat, pin.pinImage);
+    }
+
+    pinLayers.push(pinLayer);
+  }
+
+  return pinLayers;
 };
 
 const createUserPin = (): VectorLayer<VectorSource<Point>> => {
-  return createPinLayer(0, 0, pinImage);
+  return createPinLayer(0, 0, new MapImageData(pinImage, 1.0, 1.0));
 };
 
 const createMap = (): Map => {
@@ -100,12 +115,14 @@ const createMap = (): Map => {
 
   const mapLayer = new TileLayer({
     source: new OSM(),
+    preload: PRELOAD_LEVELS,
   });
 
   const mapView = new MapView({
     center: MAP_INITIAL_POSITION,
     zoom: MAP_INITIAL_ZOOM,
     minZoom: MAP_MINIMUM_ZOOM,
+    maxZoom: MAP_MAXIMUM_ZOOM,
     extent: MAP_EXTENT,
   });
 
@@ -119,4 +136,37 @@ const createMap = (): Map => {
   return createdMap;
 };
 
-export { tryWatchLocation, addBadgePins, createUserPin, createMap };
+const getDistanceSquared = (point1: Coordinate, point2: Coordinate): number => {
+  const x1 = point1[0];
+  const y1 = point1[1];
+  const x2 = point2[0];
+  const y2 = point2[1];
+
+  return Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2);
+}
+
+const getClosestPinIndex = (reference: VectorLayer<VectorSource<Point>>, destinations: VectorLayer<VectorSource<Point>>[]): number => {
+  const referenceCoords = reference.getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+  let destinationCoords = destinations[0].getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+  if (!referenceCoords || !destinationCoords) return -1;
+
+  let shortestDistanceIndex = 0;
+  let shortestDistance = getDistanceSquared(referenceCoords, destinationCoords);
+
+  for (let i = 1; i < destinations.length; ++i) {
+    destinationCoords = destinations[i].getSource()?.getFeatures()[0]?.getGeometry()?.getCoordinates();
+
+    if (!destinationCoords) return -1;
+
+    let currentDistance = getDistanceSquared(referenceCoords, destinationCoords);
+
+    if (currentDistance < shortestDistance) {
+      shortestDistance = currentDistance;
+      shortestDistanceIndex = i;
+    }
+  }
+
+  return shortestDistanceIndex;
+}
+
+export { tryWatchLocation, createBadgePins, createUserPin, createMap, getClosestPinIndex };

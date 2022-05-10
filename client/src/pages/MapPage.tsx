@@ -3,7 +3,7 @@ import IconButton from "../components/IconButton";
 import InfoBox from "../components/InfoBox";
 import Ellipse from "../images/Ellipse.png";
 
-const BadgePage = (): JSX.Element => {
+const MapPage = (): JSX.Element => {
   return (
     <div className="App flex-col justify-center align-center h-screen w-screen">
       <BadgeMap />
@@ -19,4 +19,4 @@ const BadgePage = (): JSX.Element => {
   );
 };
 
-export default BadgePage;
+export default MapPage;

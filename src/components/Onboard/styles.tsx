@@ -6,6 +6,7 @@ const styles = {
     landingCrab: "w-[400px] h-[400px] self-center",
     landingFooter1: "self-center mt-3 text-5xl font-semibold text-white",
     landingFooter2: "self-center mt-1 text-4xl font-semibold text-white",
+    startButton: "self-center mt-5",
 };
 
 export default styles;

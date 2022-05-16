@@ -1,4 +1,6 @@
+import { Outlet, Link } from "react-router-dom";
 import selection3 from "../../images/selection3.png";
+import Button from "../Button";
 import styles from "./styles";
 
 const GetStarted = (): JSX.Element => {
@@ -8,7 +10,9 @@ const GetStarted = (): JSX.Element => {
             <div className={styles.onboardBottomText}>
                 <h2 className={styles.landingFooter1}>Something here</h2>
                 <h3 className={styles.landingFooter2}>Some more text</h3>
-                <img className={styles.onboardSelection} src={selection3} />
+                <Link to="/map" className={styles.startButton}>
+                    <Button text="Get Started!" />
+                </Link>
             </div>
         </div>
     );

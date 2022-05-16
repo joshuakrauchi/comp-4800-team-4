@@ -8,6 +8,7 @@ import {
   createMap,
   getClosestPinIndex,
   createBackgroundLayer,
+  setCenterToClosestPin,
 } from "./Utilities/utilities";
 import sentinelsLabel from "../../images/sentinelsLabel.png";
 import styles from "./styles";
@@ -124,7 +125,11 @@ const BadgeMap = (): JSX.Element => {
         style={{ width: "100%", height: MAP_HEIGHT }}
         className={styles.map}
       />
-      <IconButton text={"Find the next Badge!"} icon={Ellipse} />
+      <IconButton
+        onClick={() => {setCenterToClosestPin(map.current, userPin.current, badgePins, foundBadges)}}
+        text={"Find the next Badge!"}
+        icon={Ellipse}
+      />
     </div>
   );
 };

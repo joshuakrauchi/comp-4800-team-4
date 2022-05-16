@@ -3,7 +3,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'crabBlue': '#e4f2ff',
+        'crabOrange': '#f89734',
+      }
+    },
   },
   plugins: [],
 }

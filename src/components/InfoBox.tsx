@@ -4,8 +4,8 @@ abstract class InfoBoxProp {
 
 const IconBox = (props: InfoBoxProp): JSX.Element => {
   const styles = {
-    div: "bg-gray-300 rounded px-20 pt-10 pb-5 mb-30 flex-col",
-    text: "text-center text-sky-500 pb-5 text-base",
+    div: "bg-secondary-bg rounded-3xl mx-5 px-5 pt-7 pb-2 flex-col",
+    text: "text-center text-darker pb-5 text-base",
   };
 
   return (

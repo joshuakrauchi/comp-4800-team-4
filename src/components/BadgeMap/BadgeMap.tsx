@@ -12,6 +12,8 @@ import {
 import sentinelsLabel from "../../images/sentinelsLabel.png";
 import styles from "./styles";
 import LayerGroup from "ol/layer/Group";
+import IconButton from "../../components/IconButton";
+import Ellipse from "../../images/Ellipse.png";
 
 const MAP_HEIGHT = "50vh";
 
@@ -122,6 +124,7 @@ const BadgeMap = (): JSX.Element => {
         style={{ width: "100%", height: MAP_HEIGHT }}
         className={styles.map}
       />
+      <IconButton text={"Find the next Badge!"} icon={Ellipse} />
     </div>
   );
 };

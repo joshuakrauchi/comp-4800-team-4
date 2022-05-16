@@ -16,29 +16,29 @@ const BADGE_OPACITY = 1.0;
 
 const pinData: PinData[] = [
   new PinData(
-    "crab1",
-    -123.108,
-    49.272,
+    "Zoea",
+    -123.1215,
+    49.2684,
     new MapImageData(crab1, CRAB_SCALE, CRAB_OPACITY),
     new MapImageData(rainbow, BADGE_SCALE, BADGE_OPACITY)
   ),
   new PinData(
-    "crab2",
-    -123.106,
-    49.272,
+    "Megalopa",
+    -123.118,
+    49.2695,
     new MapImageData(crab2, CRAB_SCALE, CRAB_OPACITY),
     new MapImageData(earth, BADGE_SCALE, BADGE_OPACITY)
   ),
   new PinData(
-    "crab3",
-    -123.104,
-    49.272,
+    "Instar",
+    -123.1112,
+    49.2717,
     new MapImageData(crab3, CRAB_SCALE, CRAB_OPACITY),
     new MapImageData(volcano, BADGE_SCALE, BADGE_OPACITY)
   ),
   new PinData(
-    "crab4",
-    -123.102,
+    "Adult",
+    -123.104,
     49.272,
     new MapImageData(crab4, CRAB_SCALE, CRAB_OPACITY),
     new MapImageData(boulder, BADGE_SCALE, BADGE_OPACITY)

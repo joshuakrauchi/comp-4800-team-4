@@ -10,7 +10,7 @@ const styles = {
     onboardFooterContents: "self-center mb-20",
     landingHeader: "self-center text-6xl mt-10 font-bold text-crabOrange",
     landingCrab: "w-[400px] h-[400px] self-center",
-    landingRounds: "rounds self-center",
+    landingRounds: "rounds self-center w-[819px] h-[534px]",
     landingFooter1: "self-center mt-3 text-5xl font-semibold text-white",
     landingFooter2: "self-center mt-1 text-4xl font-semibold text-white",
 };

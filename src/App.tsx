@@ -13,9 +13,12 @@ const App = (): JSX.Element => {
     <Router>
       <Routes>
         <Route path={"/*"} element={<MapPage />} />
-        <Route path={"/badge"} element={<BadgeModal badge={boulder} badgeName="Young Crab" callback={() => {console.log("Why tho");}}/>} />
+        <Route path={"/badge"} element={<BadgeModal badge={boulder} badgeName="Young Crab" callback={() => {window.location.href="/"}}/>} />
         <Route path={"/qr"} element={<div>does not exist</div>} />
         <Route path={"/trivia"} element={<div>does not exist</div>} />
+        <Route path={"/trivia2"} element={<div>does not exist</div>} />
+        <Route path={"/trivia3"} element={<div>does not exist</div>} />
+        <Route path={"/trivia4"} element={<div>does not exist</div>} />
       </Routes>
     </Router>
   );

@@ -8,9 +8,8 @@ abstract class BadgeProp {
   callback?: () => void;
 } 
 
-
 const RetakeQuiz = () => {
-  return;
+  window.location.href = "/trivia";
 }
 
 /**
@@ -19,10 +18,10 @@ const RetakeQuiz = () => {
  * @returns A modal using the parameters given.
  */
 const BadgeModal = (props: BadgeProp): JSX.Element => {
+  const { CheckBadge, AddBadge } = useBadge();
 
-  console.log(useBadge);
-  
-  if (false) {
+  if (!CheckBadge(props.badgeName)) {
+    AddBadge(props.badgeName);
     return (
       <div className={styles.badgeContainer}>
         <button className={styles.exitButton} onClick={props.callback}>

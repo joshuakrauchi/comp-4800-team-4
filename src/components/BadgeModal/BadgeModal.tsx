@@ -1,27 +1,25 @@
 import { useBadge } from "../../context/BadgeContext";
+import quiz from "../Quiz/quiz";
 import "./BadgeAnimation.css";
 import styles from "./styles";
+import {useState} from "react";
 
-abstract class BadgeProp {
+abstract class QuizResults {
   badge?: string;
   badgeName?: string;
   callback?: () => void;
+  retake?: false;
 } 
-
-const RetakeQuiz = () => {
-  window.location.href = "/trivia";
-}
 
 /**
  *
  * @param props Expects an image for the badge (badge), the name of the badge (badgeName), and a callback (callback) for the exit button.
  * @returns A modal using the parameters given.
  */
-const BadgeModal = (props: BadgeProp): JSX.Element => {
-  const { CheckBadge, AddBadge } = useBadge();
-
-  if (!CheckBadge(props.badgeName)) {
-    AddBadge(props.badgeName);
+const BadgeModal = (props: QuizResults): JSX.Element => {
+  const { CheckBadge } = useBadge();
+  
+  if (false) {
     return (
       <div className={styles.badgeContainer}>
         <button className={styles.exitButton} onClick={props.callback}>
@@ -38,17 +36,17 @@ const BadgeModal = (props: BadgeProp): JSX.Element => {
 
   return (
     <div className={styles.badgeContainer}>
-        <button className={styles.exitButton} onClick={props.callback}>
-          X
-        </button>
-        <img className={styles.badge} src={props.badge} />
-        <h1 className={styles.badgeFooter}>
-          You've Already Received the {props.badgeName} Badge!
-        </h1>
-        <button className={styles.quizButton} onClick={RetakeQuiz}>
-          Take the Quiz Again!
-        </button>
-      </div>
+      <button className={styles.exitButton} onClick={props.callback}>
+        X
+      </button>
+      <img className={styles.badge} src={props.badge} />
+      <h1 className={styles.badgeFooter}>
+        You've Already Received the {props.badgeName} Badge!
+      </h1>
+      <button className={styles.quizButton}>
+        Take the Quiz Again!
+      </button>
+    </div>
   );
 };
 

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { data } from "../../data/quizData";
 import "../../styles/quiz.css";
-export class quiz extends Component {
+
+class Quiz extends Component {
   constructor(props) {
     super(props);
 
@@ -139,4 +140,4 @@ export class quiz extends Component {
   }
 }
 
-export default quiz;
+export default Quiz;

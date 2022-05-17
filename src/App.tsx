@@ -14,7 +14,10 @@ const App = (): JSX.Element => {
         <Route path={"/*"} element={<OnboardPage />} />
         <Route path={"/map"} element={<MapPage />} />
         <Route path={"/ar"} element={<DemoARPage />} />
-        <Route path={"/badge"} element={<BadgeModal badge={boulder} badgeName="Young Crab"/>} />
+        <Route
+          path={"/badge"}
+          element={<BadgeModal badge={boulder} badgeName="Young Crab" />}
+        />
         <Route path={"/qr"} element={<div>does not exist</div>} />
         <Route path={"/trivia"} element={<div>does not exist</div>} />
       </Routes>

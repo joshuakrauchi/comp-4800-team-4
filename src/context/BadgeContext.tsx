@@ -18,7 +18,7 @@ const BadgeProvider = (props: any): JSX.Element => {
   const [badges, setBadges] = useState<string[]>(storage);
 
   const AddBadge = (badgeName: string): void => {
-    if (CheckBadge(badgeName)) return;
+    if (badges.includes(badgeName) || !BadgeNames.includes(badgeName)) return;
     setBadges([...badges, badgeName]);
     localStorage.setItem("badges", JSON.stringify({ badges: badges }));
   };

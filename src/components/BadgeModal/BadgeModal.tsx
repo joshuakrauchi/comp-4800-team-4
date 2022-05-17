@@ -20,7 +20,7 @@ const RetakeQuiz = () => {
  */
 const BadgeModal = (props: BadgeProp): JSX.Element => {
 
-  console.log(useBadge());
+  console.log(useBadge);
   
   if (false) {
     return (
@@ -42,10 +42,10 @@ const BadgeModal = (props: BadgeProp): JSX.Element => {
         <button className={styles.exitButton} onClick={props.callback}>
           X
         </button>
-        <h1 className={styles.badgeHeader}>Congratulations!</h1>
-        <h2 className={styles.badgeFooter}>
+        <img className={styles.badge} src={props.badge} />
+        <h1 className={styles.badgeFooter}>
           You've Already Received the {props.badgeName} Badge!
-        </h2>
+        </h1>
         <button className={styles.quizButton} onClick={RetakeQuiz}>
           Take the Quiz Again!
         </button>

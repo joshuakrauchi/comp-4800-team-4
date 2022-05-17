@@ -10,7 +10,7 @@ const App = (): JSX.Element => {
     <Router>
       <Routes>
         <Route path={"/*"} element={<MapPage />} />
-        <Route path={"/badge"} element={<BadgeModal badge={boulder} badgeName="Young Crab"/>} />
+        <Route path={"/badge"} element={<BadgeModal badge={boulder} badgeName="Young Crab" callback={() => {console.log("Why tho");}}/>} />
         <Route path={"/qr"} element={<div>does not exist</div>} />
         <Route path={"/trivia"} element={<div>does not exist</div>} />
       </Routes>

@@ -3,7 +3,7 @@ import { MouseEventHandler } from "react";
 export abstract class ButtonProp {
   text?: string;
   buttonStyle?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void;
 }
 
 const Button = (props: ButtonProp): JSX.Element => {

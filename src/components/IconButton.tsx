@@ -5,19 +5,26 @@ class IconButtonProp extends ButtonProp {
   icon?: string;
 }
 
-const IconButton = ({
-  text = "default",
-  icon = Missing,
-}: IconButtonProp): JSX.Element => {
+const IconButton = (
+  props: IconButtonProp = {
+    text: "default",
+    icon: Missing,
+  }
+): JSX.Element => {
   const styles = {
-    container: "flex flex-row w-full basis-full flex-wrap justify-center items-center",
+    container:
+      "flex flex-row w-full basis-full flex-wrap justify-center items-center",
     image: "z-[10] mr-[-30px]",
   };
 
   return (
     <div className={styles.container}>
-      <img className={styles.image} src={icon} alt={"logo"} />
-      <Button text={text} />
+      <img className={styles.image} src={props.icon} alt={"logo"} />
+      <Button
+        buttonStyle={props.buttonStyle}
+        onClick={props.onClick}
+        text={props.text}
+      />
     </div>
   );
 };

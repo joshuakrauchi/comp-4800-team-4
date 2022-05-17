@@ -195,6 +195,29 @@ const getClosestPinIndex = (
   return shortestDistanceIndex;
 };
 
+const setCenterToClosestPin = (
+  map: Map,
+  reference: VectorLayer<VectorSource<Point>>,
+  destinations: VectorLayer<VectorSource<Point>>[],
+  foundBadges: boolean[]
+): void => {
+  let closestPinIndex = getClosestPinIndex(
+    reference,
+    destinations,
+    foundBadges
+  );
+
+  map
+    .getView()
+    .setCenter(
+      destinations[closestPinIndex]
+        .getSource()
+        ?.getFeatures()[0]
+        .getGeometry()
+        ?.getCoordinates()
+    );
+};
+
 export {
   createBackgroundLayer,
   tryWatchLocation,
@@ -202,4 +225,5 @@ export {
   createUserPin,
   createMap,
   getClosestPinIndex,
+  setCenterToClosestPin,
 };

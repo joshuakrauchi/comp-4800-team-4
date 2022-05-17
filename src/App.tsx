@@ -5,8 +5,11 @@ import DemoARPage from "./pages/DemoARPage";
 import BadgeModal from "./components/BadgeModal/BadgeModal";
 
 import boulder from "./images/boulder.png";
+import { useBadge } from "./context/BadgeContext";
 
 const App = (): JSX.Element => {
+  const { AddBadge } = useBadge();
+  AddBadge("One");
   return (
     <Router>
       <Routes>

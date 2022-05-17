@@ -10,9 +10,9 @@ import volcano from "../images/volcano.png";
 import boulder from "../images/boulder.png";
 
 const CRAB_SCALE = 1.0;
-const CRAB_OPACITY = 1.0;
+const CRAB_OPACITY = 0.8;
 const BADGE_SCALE = 0.25;
-const BADGE_OPACITY = 1.0;
+const BADGE_OPACITY = 0.8;
 
 const pinData: PinData[] = [
   new PinData(

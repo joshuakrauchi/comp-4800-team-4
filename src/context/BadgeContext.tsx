@@ -1,7 +1,13 @@
 import React, { createContext, useState } from "react";
 
-const BadgeContext = createContext({});
+/**
+ * Cringe.
+ */
+const BadgeContext = createContext({} as any);
 
+/**
+ * Used to check input.
+ */
 const BadgeNames: readonly string[] = [
   "One", "Two", "Three", "Four"
 ];
@@ -35,7 +41,7 @@ const BadgeProvider = (props: any): JSX.Element => {
    */
   const CheckBadge = (badgeName: string): boolean => {
     return !badges.includes(badgeName) && BadgeNames.includes(badgeName);
-  }
+  };
 
   //It's an object for scalability, in case you want to add more!
   const BadgeContextValue = {
@@ -46,5 +52,5 @@ const BadgeProvider = (props: any): JSX.Element => {
   return <BadgeContext.Provider value={BadgeContextValue} {...props} />;
 };
 
-export const useBadge = () => React.useContext(BadgeContext);
 export default BadgeProvider;
+export const useBadge = () => React.useContext(BadgeContext);

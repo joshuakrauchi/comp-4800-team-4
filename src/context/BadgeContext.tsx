@@ -2,9 +2,9 @@ import React, { createContext, useState } from "react";
 
 const BadgeContext = createContext({});
 
-const BadgeNames: string[] = Object.freeze({
-  badges: ["One", "Two", "Three", "Four"]
-}).badges;
+const BadgeNames: readonly string[] = [
+  "One", "Two", "Three", "Four"
+];
 
 //This is the actual use case for 'any'.
 //The children/props of this element can be anything because

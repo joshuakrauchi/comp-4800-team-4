@@ -142,7 +142,7 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
         }}
         text={"Find the next Badge!"}
         icon={Ellipse}
-        buttonStyle="w-fit px-14"
+        buttonStyle=""
       />
     </div>
   );

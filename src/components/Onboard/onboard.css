@@ -1,0 +1,22 @@
+.back {
+  z-index: -1;
+}
+
+.outOfFocus {
+  z-index: 0;
+}
+
+.foreground {
+  z-index: 1;
+}
+
+.onboardFoot {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.rounds {
+  position: absolute;
+  top: 283px;
+}

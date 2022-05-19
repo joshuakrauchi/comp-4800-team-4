@@ -1,8 +1,10 @@
 import { Component } from "react";
 import { data } from "../../data/quizData";
 import "../../styles/quiz.css";
+import BadgeProvider from "../../context/BadgeContext";
 
 class Quiz extends Component {
+
   constructor(props) {
     super(props);
 
@@ -71,6 +73,9 @@ class Quiz extends Component {
       this.setState({
         quizEnd: true,
       });
+      if (this.state.score === data.length - 1) {
+        this.props.AddBadge();
+      }
     }
   };
 

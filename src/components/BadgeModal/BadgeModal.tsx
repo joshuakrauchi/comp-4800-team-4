@@ -8,7 +8,7 @@ abstract class QuizResults {
   badge?: string;
   badgeName?: string;
   callback?: () => void;
-  retake?: false;
+  retake?: () => void;
 } 
 
 /**
@@ -19,7 +19,7 @@ abstract class QuizResults {
 const BadgeModal = (props: QuizResults): JSX.Element => {
   const { CheckBadge } = useBadge();
   
-  if (false) {
+  if (CheckBadge) {
     return (
       <div className={styles.badgeContainer}>
         <button className={styles.exitButton} onClick={props.callback}>
@@ -43,7 +43,7 @@ const BadgeModal = (props: QuizResults): JSX.Element => {
       <h1 className={styles.badgeFooter}>
         You've Already Received the {props.badgeName} Badge!
       </h1>
-      <button className={styles.quizButton}>
+      <button className={styles.quizButton} onClick={props.retake}>
         Take the Quiz Again!
       </button>
     </div>

@@ -1,8 +1,8 @@
 import { useBadge } from "../../context/BadgeContext";
 import BadgeModal from "../BadgeModal/BadgeModal";
 import Quiz from "../Quiz/quiz";
-import boulder from "../../images/boulder.png";
 import "../../styles/quiz.css";
+import {useState} from 'react';
 
 abstract class BadgeProp {
   badge?: string;
@@ -11,15 +11,26 @@ abstract class BadgeProp {
 } 
 
 export const QRLanding = (props: BadgeProp): JSX.Element => {
-  const { CheckBadge } = useBadge();
+  const { CheckBadge, AddBadge } = useBadge();
+  const [ state, setState ] = useState("Incomplete");
 
-  if (CheckBadge(props.badgeName)) {
+  if (/* Check localstorage for if you have been to the onboarding page */<></>) {
+    return (/*Sean's onboarding component*/ <></>);
+  }
+
+  if (!CheckBadge(props.badgeName)) {
     return (
-      <Quiz/>
+      <Quiz badgeName={props.badgeName} setState={() => {setState("Complete")}} AddBadge={() => {AddBadge(props.badgeName)}}/>
+    );
+  }
+
+  if (state == "Incomplete") {
+    return (
+      <Quiz badgeName={props.badgeName} setState={() => {setState("Complete")}} AddBadge={() => {}}/>
     );
   }
 
   return (
-    <BadgeModal badge={boulder} badgeName="Three" callback={() => {window.location.href="/"}}/>
+    <BadgeModal badge={props.badge} badgeName={props.badgeName} callback={() => {window.location.href="/"}} retake={() => {setState("Incomplete")}}/>
   );
 };

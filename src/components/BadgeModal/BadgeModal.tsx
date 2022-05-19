@@ -9,6 +9,7 @@ abstract class QuizResults {
   badgeName?: string;
   callback?: () => void;
   retake?: () => void;
+  previous?: string;
 } 
 
 /**
@@ -17,9 +18,7 @@ abstract class QuizResults {
  * @returns A modal using the parameters given.
  */
 const BadgeModal = (props: QuizResults): JSX.Element => {
-  const { CheckBadge } = useBadge();
-  
-  if (CheckBadge) {
+  if (props.previous == "JustComplete") {
     return (
       <div className={styles.badgeContainer}>
         <button className={styles.exitButton} onClick={props.callback}>

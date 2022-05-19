@@ -13,6 +13,9 @@ const styles = {
   landingRounds: "rounds self-center w-[819px] h-[534px]",
   landingFooter1: "self-center mt-3 text-5xl font-semibold text-white",
   landingFooter2: "self-center mt-1 text-4xl font-semibold text-white",
+  talkingCrab: "mt-24 self-center",
+  infoSnap: "mt-2 self-center",
+  infoCrab: "mt-4 self-center pl-16",
 };
 
 export default styles;

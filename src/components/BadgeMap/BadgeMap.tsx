@@ -18,8 +18,12 @@ import Ellipse from "../../images/Ellipse.png";
 
 const MAP_HEIGHT = "50vh";
 
-const BadgeMap = (): JSX.Element => {
-  const [foundBadges, setFoundBadges] = useState([false, false, false, false]);
+interface IBadgeMapProps {
+  foundBadges: boolean[];
+}
+
+const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
+  const [foundBadges, setFoundBadges] = useState(props.foundBadges);
   const map = useRef(createMap());
   const backgroundLayer = useRef(createBackgroundLayer());
   const userPin = useRef(createUserPin());

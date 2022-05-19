@@ -10,8 +10,8 @@ const AllStampsEarned = (): JSX.Element => {
     return (
         <div className={style.container}>
             <CongratsStamp/>
-            <Button text="Download the App"/>
-            <Button text="Learn More"/>
+            <Button text="Download the App" onClick={()=> {window.open("http://play.google.com/store/apps/details?id=org.inaturalist.android")}}/>
+            <Button text="Learn More" onClick={()=> {window.open("https://sentinels.hakai.org/about")}}/>
         </div>     
     );
 };

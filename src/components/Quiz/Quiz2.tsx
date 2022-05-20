@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useBadge } from "../../context/BadgeContext";
 import { data } from "../../data/quizData";
 
 interface IQuizProps {
@@ -8,15 +7,14 @@ interface IQuizProps {
 }
 
 const Quiz = (props: IQuizProps): JSX.Element => {
-  const [userAnswer, setUserAnswer] = useState<any>(null);
+  const [userAnswer, setUserAnswer] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [options, setOptions] = useState<any[]>([]);
+  const [options, setOptions] = useState<string[]>([]);
   const [quizEnd, setQuizEnd] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
   const [disabled, setDisabled] = useState<boolean>(true);
   const [question, setQuestion] = useState<string>("");
   const [answer, setAnswer] = useState<string>("");
-  const { AddBadge } = useBadge();
 
   const LoadQuiz = (): void => {
     setQuestion(data[currentIndex].question);
@@ -25,7 +23,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
   };
 
   const NextQuestion = (): void => {
-    if (userAnswer === answer) setScore(score + 1);
+    if (userAnswer == answer) setScore(score + 1);
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -35,8 +33,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
   };
 
   const EndGame = (): void => {
-    if (currentIndex === data.length - 1) setQuizEnd(true);
-    if (score == data.length - 1) AddBadge(props.badgeName);
+    if (currentIndex == data.length - 1) setQuizEnd(true);
   };
 
   useEffect((): void => {
@@ -64,8 +61,8 @@ const Quiz = (props: IQuizProps): JSX.Element => {
     <div>
       <h2>{question}</h2>
       <span>{`${currentIndex} / ${data.length - 1}`}</span>
-      {options.map((option) => (
-        <div key={option.id} onClick={() => CheckAnswer(option)}>
+      {options.map((option, index) => (
+        <div key={index} onClick={() => CheckAnswer(option)}>
           {option}
         </div>
       ))}

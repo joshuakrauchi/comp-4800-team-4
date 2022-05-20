@@ -50,7 +50,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
     setAnswer(data[currentIndex].answer);
   }, [currentIndex]);
 
-  return !quizEnd ? (
+  return quizEnd ? (
     <div>
       <h1>Game Over. Final score is {score} points!</h1>
       <p>The correct answers are:</p>

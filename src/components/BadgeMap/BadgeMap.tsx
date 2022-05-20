@@ -23,11 +23,11 @@ interface IBadgeMapProps {
 }
 
 const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
-  const [foundBadges, setFoundBadges] = useState(props.foundBadges);
+  const foundBadges = useRef(props.foundBadges);
   const map = useRef(createMap());
   const backgroundLayer = useRef(createBackgroundLayer());
   const userPin = useRef(createUserPin());
-  const [badgePins, setBadgePins] = useState(createBadgePins(foundBadges));
+  const [badgePins, setBadgePins] = useState(createBadgePins(foundBadges.current));
   const initialized = useRef(false);
 
   useEffect((): void => {
@@ -42,7 +42,7 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
 
   useEffect(() => {
     for (let i = 0; i < badgePins.length; ++i) {
-      if (!foundBadges[i]) continue;
+      if (!foundBadges.current[i]) continue;
 
       map.current.addLayer(badgePins[i]);
     }
@@ -50,13 +50,13 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
     let closestPinIndex = getClosestPinIndex(
       userPin.current,
       badgePins,
-      foundBadges
+      foundBadges.current
     );
 
     if (closestPinIndex >= 0) {
       map.current.addLayer(badgePins[closestPinIndex]);
     }
-  }, [badgePins]);
+  }, [badgePins, foundBadges]);
 
   useEffect(() => {
     if (!map.current) return;
@@ -66,59 +66,11 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
     map.current.addLayer(backgroundLayer.current);
     map.current.addLayer(userPin.current);
 
-    setBadgePins(createBadgePins(foundBadges));
+    setBadgePins(createBadgePins(foundBadges.current));
   }, [foundBadges]);
 
   return (
     <div className={styles.mapContainer}>
-      <input
-        type="checkbox"
-        onChange={() => {
-          setFoundBadges([
-            !foundBadges[0],
-            foundBadges[1],
-            foundBadges[2],
-            foundBadges[3],
-          ]);
-        }}
-      />
-      Found Badge 1
-      <input
-        type="checkbox"
-        onChange={() => {
-          setFoundBadges([
-            foundBadges[0],
-            !foundBadges[1],
-            foundBadges[2],
-            foundBadges[3],
-          ]);
-        }}
-      />
-      Found Badge 2
-      <input
-        type="checkbox"
-        onChange={() => {
-          setFoundBadges([
-            foundBadges[0],
-            foundBadges[1],
-            !foundBadges[2],
-            foundBadges[3],
-          ]);
-        }}
-      />
-      Found Badge 3
-      <input
-        type="checkbox"
-        onChange={() => {
-          setFoundBadges([
-            foundBadges[0],
-            foundBadges[1],
-            foundBadges[2],
-            !foundBadges[3],
-          ]);
-        }}
-      />
-      Found Badge 4
       <div className={styles.mapScreen}>
         <img
           className={styles.mapLabel}
@@ -137,7 +89,7 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
             map.current,
             userPin.current,
             badgePins,
-            foundBadges
+            foundBadges.current
           );
         }}
         text={"Find the next Badge!"}

@@ -1,37 +1,66 @@
+import { useState, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { useBadge } from "../../context/BadgeContext";
 import BadgeModal from "../BadgeModal/BadgeModal";
-import Quiz from "../Quiz/quiz";
-import "../../styles/quiz.css";
-import {useState} from 'react';
 import OnboardPage from "../../pages/OnboardPage";
+import Quiz from "../Quiz/Quiz";
 
-abstract class BadgeProp {
-  badge?: string;
-  badgeName?: string;
-  callback?: () => void;
-} 
+abstract class BadgeProp {}
 
 export const QRLanding = (props: BadgeProp): JSX.Element => {
-  const { CheckBadge, AddBadge } = useBadge();
-  const [ state, setState ] = useState("");
+  const [searchParams] = useSearchParams();
+  const badgeName = useRef(searchParams.get("badge") || "");
+  const {
+    addBadge,
+    isBadgeValid,
+    hasBadgeBeenCollected,
+    isOnboardingComplete,
+  } = useBadge();
+  const [currentBadgeState, setCurrentBadgeState] =
+    useState("AlreadyCompleted");
 
-  if (/* Check localstorage for if you have been to the onboarding page */<></>) {
-    return (<OnboardPage/>);
+  if (!isOnboardingComplete) {
+    return <OnboardPage />;
   }
 
-  if (!CheckBadge(props.badgeName)) {
-    return (
-      <Quiz badgeName={props.badgeName} setState={() => {setState("JustCompleted")}} AddBadge={() => {AddBadge(props.badgeName)}}/>
-    );
+  if (!isBadgeValid(badgeName.current)) {
+    window.location.href = "/map";
+    return <></>;
   }
 
-  if (state == "Incomplete") {
+  if (
+    currentBadgeState !== "FailedQuiz" &&
+    (!hasBadgeBeenCollected(badgeName.current) ||
+      currentBadgeState === "Retaking")
+  ) {
     return (
-      <Quiz badgeName={props.badgeName} setState={() => {setState("Complete")}} AddBadge={() => {}}/>
+      <Quiz
+        badgeName={badgeName.current}
+        onComplete={(hasWonQuiz: boolean) => {
+          if (
+            currentBadgeState === "Retaking" &&
+            hasBadgeBeenCollected(badgeName.current)
+          ) {
+            setCurrentBadgeState("AlreadyCompleted");
+          } else if (hasWonQuiz) {
+            addBadge(badgeName.current);
+            setCurrentBadgeState("JustCompleted");
+          } else if (!hasWonQuiz) {
+            setCurrentBadgeState("FailedQuiz");
+          }
+        }}
+      />
     );
   }
 
   return (
-    <BadgeModal badge={props.badge} badgeName={props.badgeName} callback={() => {window.location.href="/"}} retake={() => {setState("Incomplete")}} previous={state}/>
+    <BadgeModal
+      badgeName={badgeName.current}
+      retake={() => {
+        setCurrentBadgeState("Retaking");
+      }}
+      currentBadgeState={currentBadgeState}
+    />
   );
 };

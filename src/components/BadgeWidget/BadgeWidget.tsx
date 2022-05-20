@@ -11,8 +11,8 @@ const BadgeWidget = (props: IBadgeWidgetProps): JSX.Element => {
   return (
     <div className={styles.badgeContainer}>
       {pinData.map((pin: PinData, index: number) => (
-        <div>
-          <img
+        <div key={index}>
+          <img alt="badge"
             className={styles.badgeImage}
             src={props.foundBadges[index] ? pin.badgeImage.url : badgeOutline}
           />

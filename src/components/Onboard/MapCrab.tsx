@@ -10,9 +10,13 @@ import styles from "./styles";
 const MapCrab = (): JSX.Element => {
   return (
     <div className={styles.onboardContainer}>
-      <img className={styles.sentinelsLabel} src={sentinels} />
-      <img className={styles.infoSnap} src={mapSnap} />
-      <img className={styles.infoCrab} src={crab} />
+      <img
+        alt="sentinels label"
+        className={styles.sentinelsLabel}
+        src={sentinels}
+      />
+      <img alt="map snapshot" className={styles.infoSnap} src={mapSnap} />
+      <img alt="info crab" className={styles.infoCrab} src={crab} />
       <OnboardFooter path={selection2} />
     </div>
   );

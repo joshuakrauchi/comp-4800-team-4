@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { data } from "../../data/quizData";
 import "../../styles/quiz.css";
-import BadgeProvider from "../../context/BadgeContext";
 
 class Quiz extends Component {
 

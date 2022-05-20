@@ -1,8 +1,5 @@
-import { useBadge } from "../../context/BadgeContext";
-import quiz from "../Quiz/quiz";
 import "./BadgeAnimation.css";
 import styles from "./styles";
-import {useState} from "react";
 
 abstract class QuizResults {
   badge?: string;
@@ -29,6 +26,9 @@ const BadgeModal = (props: QuizResults): JSX.Element => {
         <h2 className={styles.badgeFooter}>
           You've Received the {props.badgeName} Badge!
         </h2>
+        <button className={styles.quizButton} onClick={props.retake}>
+          Take the Quiz Again!
+        </button>
       </div>
     );
   }

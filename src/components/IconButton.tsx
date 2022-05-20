@@ -21,6 +21,7 @@ const IconButton = (
     <div className={styles.container}>
       <img className={styles.image} src={props.icon} alt={"logo"} />
       <Button
+        disabled={props.disabled}
         buttonStyle={props.buttonStyle}
         onClick={props.onClick}
         text={props.text}

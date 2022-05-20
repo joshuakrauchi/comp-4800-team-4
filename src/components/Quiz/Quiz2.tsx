@@ -30,7 +30,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
     setDisabled(true);
   };
 
-  const CheckAnswer = (ans: string) => {
+  const CheckAnswer = (ans: string): void => {
     setUserAnswer(ans);
     setDisabled(false);
   };

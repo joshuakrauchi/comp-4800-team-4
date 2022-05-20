@@ -5,6 +5,7 @@ import { QRLanding } from "./components/QRLanding/QRLanding";
 
 import AllStampsEarned from "./pages/AllStampsEarned";
 import { useBadge } from "./context/BadgeContext";
+import ClearProgressPage from "./pages/ClearProgressPage/ClearProgressPage";
 
 const App = (): JSX.Element => {
   const { hasFoundAllBadges } = useBadge();
@@ -16,17 +17,21 @@ const App = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.secondContainerBecauseWebDevDoBeLikeThat}>
-        {hasFoundAllBadges() ? (
-          <AllStampsEarned />
-        ) : (
-          <Router>
+        <Router>
+          {hasFoundAllBadges() ? (
+            <Routes>
+              <Route path={"/*"} element={<AllStampsEarned />} />
+              <Route path={"/clearprogress"} element={<ClearProgressPage />} />
+            </Routes>
+          ) : (
             <Routes>
               <Route path={"/*"} element={<QRLanding />} />
               <Route path={"/map"} element={<MapPage />} />
               <Route path={"/end"} element={<AllStampsEarned />} />
+              <Route path={"/clearprogress"} element={<ClearProgressPage />} />
             </Routes>
-          </Router>
-        )}
+          )}
+        </Router>
       </div>
     </div>
   );

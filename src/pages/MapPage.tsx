@@ -33,6 +33,13 @@ const MapPage = (): JSX.Element => {
         buttonStyle="text-3xl"
         text={"Learn More"}
       />
+      <Button
+        onClick={() => {
+          window.location.href = "/clearprogress";
+        }}
+        buttonStyle="mt-10"
+        text={"Clear Progress"}
+      />
     </div>
   );
 };

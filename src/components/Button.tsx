@@ -1,7 +1,9 @@
+import { disable } from "ol/rotationconstraint";
 import { MouseEventHandler } from "react";
 
 export abstract class ButtonProp {
   text?: string;
+  disabled?: boolean;
   buttonStyle?: string;
   onClick?: () => void;
 }
@@ -15,7 +17,7 @@ const Button = (props: ButtonProp): JSX.Element => {
 
   return (
     <div className={styles.div}>
-      <button onClick={props.onClick} className={styles.button}>{props.text}</button>
+      <button disabled={props.disabled} onClick={props.onClick} className={styles.button}>{props.text}</button>
     </div>
   );
 };

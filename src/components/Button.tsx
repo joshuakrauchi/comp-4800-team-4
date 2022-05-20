@@ -1,5 +1,3 @@
-import { MouseEventHandler } from "react";
-
 export abstract class ButtonProp {
   text?: string;
   buttonStyle?: string;

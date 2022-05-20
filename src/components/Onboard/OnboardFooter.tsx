@@ -2,6 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import Button from "../Button";
 import styles from "./styles";
 import "./onboard.css";
+import { useBadge } from "../../context/BadgeContext";
 
 abstract class FooterProp {
   path?: string;
@@ -10,10 +11,11 @@ abstract class FooterProp {
 }
 
 const OnboardFooter = (prop: FooterProp): JSX.Element => {
+  const { SetOnboardingComplete } = useBadge();
   if (prop.link == null) {
     return (
       <footer className={styles.onboardFooter}>
-        <img className={styles.onboardFooterContents} src={prop.path} />
+        <img alt="footer" className={styles.onboardFooterContents} src={prop.path} />
       </footer>
     );
   } else {
@@ -21,7 +23,10 @@ const OnboardFooter = (prop: FooterProp): JSX.Element => {
       <footer className={styles.onboardFooter}>
         <div className={styles.buttonAdjust}>
           <Link to={prop.link} className={styles.onboardFooterContents}>
-            <Button text={prop.text} />
+            <Button onClick={() => {
+              SetOnboardingComplete();
+              window.location.href="/map"
+              }} text={prop.text} />
           </Link>
           <Outlet />
         </div>

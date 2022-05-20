@@ -56,7 +56,7 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
     if (closestPinIndex >= 0) {
       map.current.addLayer(badgePins[closestPinIndex]);
     }
-  }, [badgePins]);
+  }, [badgePins, foundBadges]);
 
   useEffect(() => {
     if (!map.current) return;

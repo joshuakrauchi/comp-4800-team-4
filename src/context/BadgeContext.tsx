@@ -1,7 +1,4 @@
-import React, {
-  createContext,
-  useState
-} from "react";
+import React, { createContext, useState } from "react";
 
 /**
  * Arguably the most beautiful piece of code in this whole project. <3
@@ -11,47 +8,58 @@ const BadgeContext = createContext({} as any);
 /**
  * Used to check input.
  */
-const BadgeNames: readonly string[] = ["One", "Two", "Three", "Four"];
+const BadgeNames: readonly string[] = ["Zoea", "Megalopa", "Instar", "Adult"];
 
 //This is the actual use case for 'any'.
 //The children/props of this element can be anything because
 //it is at the highest level of the DOM.
 const BadgeProvider = (props: any): JSX.Element => {
   const storage: string[] = JSON.parse(
-    localStorage.getItem("badges") || JSON.stringify({
-      badges: []
-    })
+    localStorage.getItem("badges") ||
+      JSON.stringify({
+        badges: [],
+      })
   ).badges;
-  const [badges, setBadges] = useState < string[] > (storage);
+  const [badges, setBadges] = useState<string[]>(storage);
+  const [onboardingComplete, setOnboardingComplete] = useState<boolean>(
+    localStorage.getItem("onboardingComplete") != null
+  );
+
+  const SetOnboardingComplete = () => {
+    setOnboardingComplete(true);
+    localStorage.setItem("onboardingComplete", "true");
+  };
 
   /**
    *
-   * @param badgeName Strings: "One", "Two", "Three", "Four"
+   * @param badgeName Strings representing stages of the Dungeness crab.
    * @returns Nothing.
    */
   const AddBadge = (badgeName: string): void => {
-    CheckBadgeAddable(badgeName);
     setBadges([...badges, badgeName]);
-    localStorage.setItem("badges", JSON.stringify({
-      badges: badges
-    }));
+    localStorage.setItem(
+      "badges",
+      JSON.stringify({
+        badges: badges,
+      })
+    );
   };
 
   /**
    *
-   * @param badgeName Strings: "One", "Two", "Three", "Four"
-   * @returns True if badge can be added to badges, false if it cannot.
+   * @param badgeName Strings representing stages of the Dungeness crab.
+   * @returns True if badge exists in the list of valid badge names.
    */
-  const CheckBadgeAddable = (badgeName: string): boolean => {
-    return !badges.includes(badgeName) && BadgeNames.includes(badgeName);
+  const IsBadgeValid = (badgeName: string): boolean => {
+    return BadgeNames.includes(badgeName);
   };
 
   /**
-   * 
-   * @param badgeName Strings: "One", "Two", "Three", "Four"
-   * @returns Check if badgeName is in the list of badges.
+   *
+   * @param badgeName Strings representing stages of the Dungeness crab.
+   * @returns True if the user has collected this badge.
    */
-  const CheckBadge = (badgeName: string): boolean => {
+  const HasBadgeBeenCollected = (badgeName: string): boolean => {
     return badges.includes(badgeName);
   };
 
@@ -67,17 +75,14 @@ const BadgeProvider = (props: any): JSX.Element => {
   //It's an object for scalability, in case you want to add more!
   const BadgeContextValue = {
     AddBadge,
-    CheckBadge,
-    CheckBadgeAddable,
+    HasBadgeBeenCollected,
+    IsBadgeValid,
     GetFoundBadges,
+    SetOnboardingComplete,
+    onboardingComplete,
   };
 
-  return <BadgeContext.Provider value = {
-    BadgeContextValue
-  } {
-    ...props
-  }
-  />;
+  return <BadgeContext.Provider value={BadgeContextValue} {...props} />;
 };
 
 export default BadgeProvider;

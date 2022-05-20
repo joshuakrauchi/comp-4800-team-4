@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import OnboardPage from "./pages/OnboardPage";
 import MapPage from "./pages/MapPage";
 import { QRLanding } from "./components/QRLanding/QRLanding"
 
@@ -10,10 +9,9 @@ const App = (): JSX.Element => {
   return (
     <Router>
       <Routes>
-        <Route path={"/*"} element={<OnboardPage />} />
+        <Route path={"/*"} element={<QRLanding />} />
         <Route path={"/map"} element={<MapPage />} />
-        <Route path={"/qr"} element={<QRLanding />} />
-        <Route path={"/DownloadTheApp"} element={<AllStampsEarned />} />
+        <Route path={"/end"} element={<AllStampsEarned />} />
       </Routes>
     </Router>
   );

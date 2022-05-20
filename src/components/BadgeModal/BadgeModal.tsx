@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import "./BadgeAnimation.css";
 import styles from "./styles";
 import pinData from "../../data/pinData";
-import missing from "../../images/missing.png";
 import Button from "../Button";
 
 abstract class QuizResults {
@@ -26,39 +25,46 @@ const BadgeModal = (props: QuizResults): JSX.Element => {
   const [badgeFooter, setBadgeFooter] = useState("");
 
   useEffect(() => {
-    if (props.currentBadgeState === "FailedQuiz") {
-      setBadgeURL(missing);
-    } else {
-      pinData.forEach((element) => {
-        if (element.name === props.badgeName) {
-          setBadgeURL(element.badgeImage.url);
-        }
-      });
-    }
+    pinData.forEach((element) => {
+      if (element.name === props.badgeName) {
+        setBadgeURL(element.badgeImage.url);
+      }
+    });
 
     switch (props.currentBadgeState) {
       case "FailedQuiz":
-        setBadgeHeader("Sorry dude, looks like you suck ass");
-        setBadgeFooter("Don't worry, you'll learn to read one day");
+        setBadgeHeader("Oh No!");
+        setBadgeFooter("Your score wasn't high enough to get the badge...");
         break;
       case "AlreadyCompleted":
-        setBadgeHeader(`The ${props.badgeName} Badge`);
-        setBadgeFooter(`You've Already Received the ${props.badgeName} Badge!`);
+        setBadgeHeader(`${props.badgeName}`);
+        setBadgeFooter(`You've already received the ${props.badgeName} badge!`);
         break;
       case "JustCompleted":
-        setBadgeHeader(`The ${props.badgeName} Badge`);
+        setBadgeHeader(`Congratulations!`);
         setBadgeFooter(
-          `Congratulations! You've Won the ${props.badgeName} Badge!`
+          `You've won the ${props.badgeName} badge!`
         );
         break;
     }
-  }, []);
+  }, [props.badgeName, props.currentBadgeState]);
 
   return (
-    <div className={styles.badgeContainer}>
-      <img alt="badge" className={styles.badge} src={badgeURL} />
-      <h1 className={styles.badgeHeader}>{badgeHeader}</h1>
-      <h2 className={styles.badgeFooter}>{badgeFooter}</h2>
+    <div className={styles.mainContainer}>
+      <div className={styles.badgeContainer}>
+        <img
+          alt="badge"
+          className={
+            styles.badge +
+            (props.currentBadgeState === "FailedQuiz"
+              ? " grayscale blur-sm"
+              : " badge-animation")
+          }
+          src={badgeURL}
+        />
+        <h1 className={styles.badgeHeader}>{badgeHeader}</h1>
+        <h2 className={styles.badgeFooter}>{badgeFooter}</h2>
+      </div>
       <Button
         onClick={() => {
           window.location.href = "/map";

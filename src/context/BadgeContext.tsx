@@ -21,12 +21,12 @@ const BadgeProvider = (props: any): JSX.Element => {
       })
   ).badges;
   const [badges, setBadges] = useState<string[]>(storage);
-  const [onboardingComplete, setOnboardingComplete] = useState<boolean>(
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState<boolean>(
     localStorage.getItem("onboardingComplete") != null
   );
 
-  const SetOnboardingComplete = () => {
-    setOnboardingComplete(true);
+  const setOnboardingComplete = () => {
+    setIsOnboardingComplete(true);
     localStorage.setItem("onboardingComplete", "true");
   };
 
@@ -35,7 +35,7 @@ const BadgeProvider = (props: any): JSX.Element => {
    * @param badgeName Strings representing stages of the Dungeness crab.
    * @returns Nothing.
    */
-  const AddBadge = (badgeName: string): void => {
+  const addBadge = (badgeName: string): void => {
     setBadges([...badges, badgeName]);
     localStorage.setItem(
       "badges",
@@ -50,7 +50,7 @@ const BadgeProvider = (props: any): JSX.Element => {
    * @param badgeName Strings representing stages of the Dungeness crab.
    * @returns True if badge exists in the list of valid badge names.
    */
-  const IsBadgeValid = (badgeName: string): boolean => {
+  const isBadgeValid = (badgeName: string): boolean => {
     return BadgeNames.includes(badgeName);
   };
 
@@ -59,11 +59,11 @@ const BadgeProvider = (props: any): JSX.Element => {
    * @param badgeName Strings representing stages of the Dungeness crab.
    * @returns True if the user has collected this badge.
    */
-  const HasBadgeBeenCollected = (badgeName: string): boolean => {
+  const hasBadgeBeenCollected = (badgeName: string): boolean => {
     return badges.includes(badgeName);
   };
 
-  const GetFoundBadges = (): boolean[] => {
+  const getFoundBadges = (): boolean[] => {
     let foundBadges: boolean[] = [];
     BadgeNames.forEach((value: string) => {
       foundBadges.push(badges.includes(value));
@@ -72,14 +72,19 @@ const BadgeProvider = (props: any): JSX.Element => {
     return foundBadges;
   };
 
+  const hasFoundAllBadges = (): boolean => {
+    return badges.length === BadgeNames.length;
+  }
+
   //It's an object for scalability, in case you want to add more!
   const BadgeContextValue = {
-    AddBadge,
-    HasBadgeBeenCollected,
-    IsBadgeValid,
-    GetFoundBadges,
-    SetOnboardingComplete,
-    onboardingComplete,
+    addBadge,
+    hasBadgeBeenCollected,
+    isBadgeValid,
+    getFoundBadges,
+    setOnboardingComplete,
+    isOnboardingComplete,
+    hasFoundAllBadges
   };
 
   return <BadgeContext.Provider value={BadgeContextValue} {...props} />;

@@ -1,11 +1,9 @@
 const styles = {
-  badgeContainer:
-    "bg-gray-300 w-screen h-[80vh] md:h-[65vh] lg:h-[65vh] flex flex-col",
-  exitButton: "w-10 self-end justify-self-start font-bold",
-  badgeHeader: "self-center text-3xl font-bold text-blue-600",
-  badge: "badge-animation w-[350px] h-[350px] mt-10 self-center",
-  badgeFooter: "self-center mt-10 text-lg font-semibold text-blue-600",
-  quizButton: "w-30 self-center justify-self-start font-bold bg-blue-600 rounded p-2",
+  mainContainer: "App overflow-scroll bg-background h-screen text-white",
+  badgeContainer: "bg-popout m-10 pb-10 rounded-lg flex flex-col",
+  badgeHeader: "text-2xl font-bold text-white text-center p-7 pt-16 pb-2 align-center",
+  badge: "w-4/6 self-center my-10 drop-shadow-2xl",
+  badgeFooter: "p-8 pt-5 pb-5 font-semibold leading-relaxed text-white text-center align-center",
 };
 
 export default styles;

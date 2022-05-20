@@ -2,12 +2,12 @@ import Button from "../components/Button";
 import CongratsStamp from "../components/CongratsStamp";
 
 const AllStampsEarned = (): JSX.Element => {
-  const style = {
+  const styles = {
     container: "App overflow-scroll bg-background h-screen",
   };
 
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       <CongratsStamp />
       <Button
         text="Download the App"

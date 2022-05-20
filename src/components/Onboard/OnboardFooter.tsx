@@ -11,7 +11,7 @@ abstract class FooterProp {
 }
 
 const OnboardFooter = (prop: FooterProp): JSX.Element => {
-  const { SetOnboardingComplete } = useBadge();
+  const { setOnboardingComplete } = useBadge();
   if (prop.link == null) {
     return (
       <footer className={styles.onboardFooter}>
@@ -24,7 +24,7 @@ const OnboardFooter = (prop: FooterProp): JSX.Element => {
         <div className={styles.buttonAdjust}>
           <Link to={prop.link} className={styles.onboardFooterContents}>
             <Button onClick={() => {
-              SetOnboardingComplete();
+              setOnboardingComplete();
               window.location.href="/map"
               }} text={prop.text} />
           </Link>

@@ -1,41 +1,52 @@
+import { useState, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { useBadge } from "../../context/BadgeContext";
 import BadgeModal from "../BadgeModal/BadgeModal";
+import OnboardPage from "../../pages/OnboardPage";
 import Quiz from "../Quiz/quiz";
 import "../../styles/quiz.css";
-import { useState, useRef } from "react";
-import OnboardPage from "../../pages/OnboardPage";
 
 abstract class BadgeProp {}
 
 export const QRLanding = (props: BadgeProp): JSX.Element => {
-  const badgeName = useRef("Zoea");
-  const { AddBadge, IsBadgeValid, HasBadgeBeenCollected, onboardingComplete } =
-    useBadge();
-  const [currentBadgeState, setCurrentBadgeState] = useState("AlreadyCompleted");
+  const [searchParams] = useSearchParams();
+  const badgeName = useRef(searchParams.get("badge") || "");
+  const {
+    addBadge,
+    isBadgeValid,
+    hasBadgeBeenCollected,
+    isOnboardingComplete,
+  } = useBadge();
+  const [currentBadgeState, setCurrentBadgeState] =
+    useState("AlreadyCompleted");
 
-  if (!onboardingComplete) {
-    console.log(onboardingComplete);
+  if (!isOnboardingComplete) {
     return <OnboardPage />;
   }
 
-  if (!IsBadgeValid(badgeName.current)) {
+  if (!isBadgeValid(badgeName.current)) {
     window.location.href = "/map";
     return <></>;
   }
 
-  if (false &&
-    !HasBadgeBeenCollected(badgeName.current) ||
-    currentBadgeState === "Retaking"
+  if (
+    currentBadgeState !== "FailedQuiz" &&
+    (!hasBadgeBeenCollected(badgeName.current) ||
+      currentBadgeState === "Retaking")
   ) {
     return (
       <Quiz
         badgeName={badgeName.current}
         onComplete={(hasWonQuiz: boolean) => {
-          if (currentBadgeState === "Retaking") {
+          if (
+            currentBadgeState === "Retaking" &&
+            hasBadgeBeenCollected(badgeName.current)
+          ) {
             setCurrentBadgeState("AlreadyCompleted");
           } else if (hasWonQuiz) {
             setCurrentBadgeState("JustCompleted");
-            AddBadge(badgeName.current);
+            addBadge(badgeName.current);
           } else if (!hasWonQuiz) {
             setCurrentBadgeState("FailedQuiz");
           }

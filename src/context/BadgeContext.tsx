@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 /**
  * Arguably the most beautiful piece of code in this whole project. <3
@@ -37,16 +37,20 @@ const BadgeProvider = (props: any): JSX.Element => {
    */
   const addBadge = (badgeName: string): void => {
     setBadges([...badges, badgeName])
+  };
 
-    console.log(`Attempted to put ${badgeName} in list: ${badges}`);
-
+  /**
+   * Watch the list of badges for an update.
+   * When badges is updated, store it in local storage.
+   */
+  useEffect(() => {
     localStorage.setItem(
       "badges",
       JSON.stringify({
         badges: badges,
       })
     );
-  };
+  }, [badges])
 
   /**
    *

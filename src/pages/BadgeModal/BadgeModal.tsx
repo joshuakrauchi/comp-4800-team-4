@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./BadgeAnimation.css";
 import styles from "./styles";
 import pinData from "../../data/pinData";
-import Button from "../Button";
+import Button from "../../components/Buttons/Button/Button";
 
 abstract class QuizResults {
   badgeName?: string;

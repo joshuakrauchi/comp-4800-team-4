@@ -1,5 +1,5 @@
-import PinData from "../components/BadgeMap/Utilities/PinData";
-import MapImageData from "../components/BadgeMap/Utilities/MapImageData";
+import PinData from "../pages/MapPage/components/BadgeMap/utilities/PinData";
+import MapImageData from "../pages/MapPage/components/BadgeMap/utilities/MapImageData";
 import crab1 from "../images/crab1.png";
 import crab2 from "../images/crab2.png";
 import crab3 from "../images/crab3.png";

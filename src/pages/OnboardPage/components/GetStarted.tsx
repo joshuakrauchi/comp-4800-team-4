@@ -1,8 +1,8 @@
 import OnboardFooter from "./OnboardFooter";
 
-import sentinels from "../../images/sentinelsLabel.png";
-import quizSnap from "../../images/quizSnap.png";
-import quizCrab from "../../images/quizCrab.png";
+import sentinels from "../../../images/sentinelsLabel.png";
+import quizSnap from "../../../images/quizSnap.png";
+import quizCrab from "../../../images/quizCrab.png";
 
 import styles from "./styles";
 

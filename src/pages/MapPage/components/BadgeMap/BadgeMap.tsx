@@ -9,12 +9,12 @@ import {
   getClosestPinIndex,
   createBackgroundLayer,
   setCenterToClosestPin,
-} from "./Utilities/utilities";
-import sentinelsLabel from "../../images/sentinelsLabel.png";
+} from "./utilities/utilities";
+import sentinelsLabel from "../../../../images/sentinelsLabel.png";
 import styles from "./styles";
 import LayerGroup from "ol/layer/Group";
-import IconButton from "../../components/IconButton";
-import Ellipse from "../../images/Ellipse.png";
+import IconButton from "../../../../components/Buttons/IconButton/IconButton";
+import Ellipse from "../../../../images/Ellipse.png";
 
 const MAP_HEIGHT = "50vh";
 

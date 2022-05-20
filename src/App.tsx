@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import MapPage from "./pages/MapPage";
-import { QRLanding } from "./components/QRLanding/QRLanding";
-
-import AllStampsEarned from "./pages/AllStampsEarned";
+import MapPage from "./pages/MapPage/MapPage";
+import { QRLanding } from "./pages/QRLanding/QRLanding";
+import AllStampsEarned from "./pages/AllStampsEarned/AllStampsEarned";
 import { useBadge } from "./context/BadgeContext";
 import ClearProgressPage from "./pages/ClearProgressPage/ClearProgressPage";
 

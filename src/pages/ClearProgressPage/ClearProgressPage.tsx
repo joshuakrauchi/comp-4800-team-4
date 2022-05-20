@@ -1,5 +1,5 @@
 import styles from "./styles";
-import Button from "../../components/Button";
+import Button from "../../components/Buttons/Button/Button";
 
 const ClearProgressPage = (): JSX.Element => {
   const clearProgress = (): void => {

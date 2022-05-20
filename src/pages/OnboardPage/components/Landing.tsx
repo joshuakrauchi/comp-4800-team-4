@@ -1,9 +1,9 @@
 import OnboardFooter from "./OnboardFooter";
 
-import sentinels from "../../images/sentinelsLabel.png";
-import adult from "../../images/adult_shadow.png";
-import rounds from "../../images/rounds.png";
-import selection1 from "../../images/selection1.png";
+import sentinels from "../../../images/sentinelsLabel.png";
+import adult from "../../../images/adult_shadow.png";
+import rounds from "../../../images/rounds.png";
+import selection1 from "../../../images/selection1.png";
 
 import styles from "./styles";
 

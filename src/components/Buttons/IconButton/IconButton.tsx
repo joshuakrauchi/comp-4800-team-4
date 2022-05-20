@@ -1,5 +1,5 @@
-import Button, { ButtonProp } from "./Button";
-import Missing from "../images/missing.png";
+import Button, { ButtonProp } from "../Button/Button";
+import Missing from "../../../images/missing.png";
 
 class IconButtonProp extends ButtonProp {
   icon?: string;

@@ -1,10 +1,10 @@
-import Naturalist from "../images/naturalist.png";
+import Naturalist from "../../../../images/naturalist.png";
 
 const CongratsStamp = (): JSX.Element => {
   const style = {
     container: "bg-popout m-10 rounded-lg",
-    head: "text-2xl font-bold text-white text-center p-7 pt-16 pb-2 align-center",
-    par: "p-8 pt-5 pb-5 font-semibold leading-relaxed text-white text-center align-center",
+    head: "text-center p-7 pt-16 pb-2 align-center",
+    par: "p-8 pt-5 pb-5 leading-relaxed text-center align-center",
     img: "w-full pt-7 pb-14",
   };
 

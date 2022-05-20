@@ -12,8 +12,8 @@ import { Point } from "ol/geom";
 import { Coordinate } from "ol/coordinate";
 
 import MapImageData from "./MapImageData";
-import pinData from "../../../data/pinData";
-import pinImage from "../../../images/pinImage.png";
+import pinData from "../../../../../data/pinData";
+import pinImage from "../../../../../images/pinImage.png";
 
 const MAP_INITIAL_ZOOM = 16;
 const MAP_MINIMUM_ZOOM = 0;

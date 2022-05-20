@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { useBadge } from "../../context/BadgeContext";
 import BadgeModal from "../BadgeModal/BadgeModal";
-import OnboardPage from "../../pages/OnboardPage";
+import OnboardPage from "../OnboardPage/OnboardPage";
 import Quiz from "../Quiz/Quiz";
 
 abstract class BadgeProp {}

@@ -1,8 +1,8 @@
 import SwipeableViews from "react-swipeable-views";
-import Landing from "../components/Onboard/Landing";
-import InitialInfo from "../components/Onboard/InitialInfo";
-import MapCrab from "../components/Onboard/MapCrab";
-import GetStarted from "../components/Onboard/GetStarted";
+import Landing from "./components/Landing";
+import InitialInfo from "./components/InitialInfo";
+import MapCrab from "./components/MapCrab";
+import GetStarted from "./components/GetStarted";
 
 const OnboardSwiper = (): JSX.Element => {
   return (

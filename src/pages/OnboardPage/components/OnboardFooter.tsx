@@ -1,8 +1,8 @@
 import { Outlet, Link } from "react-router-dom";
-import Button from "../Button";
+import Button from "../../../components/Buttons/Button/Button"
 import styles from "./styles";
 import "./onboard.css";
-import { useBadge } from "../../context/BadgeContext";
+import { useBadge } from "../../../context/BadgeContext";
 
 abstract class FooterProp {
   path?: string;

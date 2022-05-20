@@ -1,7 +1,7 @@
 import styles from "./styles";
-import PinData from "../BadgeMap/Utilities/PinData";
-import pinData from "../../data/pinData";
-import badgeOutline from "../../images/badgeOutline.png";
+import PinData from "../BadgeMap/utilities/PinData";
+import pinData from "../../../../data/pinData";
+import badgeOutline from "../../../../images/badgeOutline.png";
 
 interface IBadgeWidgetProps {
   foundBadges: boolean[];

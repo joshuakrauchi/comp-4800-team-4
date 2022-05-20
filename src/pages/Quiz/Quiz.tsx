@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { data } from "../../data/quizData";
-import Button from "../Button";
+import Button from "../../components/Buttons/Button/Button";
 
 interface IQuizProps {
   badgeName: string;

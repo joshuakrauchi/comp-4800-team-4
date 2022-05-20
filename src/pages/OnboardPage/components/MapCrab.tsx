@@ -1,9 +1,9 @@
 import OnboardFooter from "./OnboardFooter";
 
-import sentinels from "../../images/sentinelsLabel.png";
-import mapSnap from "../../images/mapSnap.png";
-import crab from "../../images/mapCrab.png";
-import selection2 from "../../images/selection2Alt.png";
+import sentinels from "../../../images/sentinelsLabel.png";
+import mapSnap from "../../../images/mapSnap.png";
+import crab from "../../../images/mapCrab.png";
+import selection2 from "../../../images/selection2Alt.png";
 
 import styles from "./styles";
 

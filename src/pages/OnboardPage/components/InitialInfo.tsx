@@ -1,8 +1,8 @@
 import OnboardFooter from "./OnboardFooter";
 
-import sentinels from "../../images/sentinelsLabel.png";
-import talking1 from "../../images/talking1.png";
-import selection1 from "../../images/selection1Alt.png";
+import sentinels from "../../../images/sentinelsLabel.png";
+import talking1 from "../../../images/talking1.png";
+import selection1 from "../../../images/selection1Alt.png";
 
 import styles from "./styles";
 

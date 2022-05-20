@@ -4,8 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { useBadge } from "../../context/BadgeContext";
 import BadgeModal from "../BadgeModal/BadgeModal";
 import OnboardPage from "../../pages/OnboardPage";
-import Quiz from "../Quiz/quiz";
-import "../../styles/quiz.css";
+import Quiz from "../Quiz/Quiz";
 
 abstract class BadgeProp {}
 
@@ -45,8 +44,8 @@ export const QRLanding = (props: BadgeProp): JSX.Element => {
           ) {
             setCurrentBadgeState("AlreadyCompleted");
           } else if (hasWonQuiz) {
-            setCurrentBadgeState("JustCompleted");
             addBadge(badgeName.current);
+            setCurrentBadgeState("JustCompleted");
           } else if (!hasWonQuiz) {
             setCurrentBadgeState("FailedQuiz");
           }

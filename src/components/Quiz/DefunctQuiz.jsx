@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { data } from "../../data/quizData";
-import "../../styles/quiz.css";
 
 class Quiz extends Component {
 

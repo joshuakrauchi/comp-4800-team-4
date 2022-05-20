@@ -36,7 +36,10 @@ const BadgeProvider = (props: any): JSX.Element => {
    * @returns Nothing.
    */
   const addBadge = (badgeName: string): void => {
-    setBadges([...badges, badgeName]);
+    setBadges([...badges, badgeName])
+
+    console.log(`Attempted to put ${badgeName} in list: ${badges}`);
+
     localStorage.setItem(
       "badges",
       JSON.stringify({

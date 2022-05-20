@@ -10,7 +10,9 @@ module.exports = {
         "popout": "#F89734",
         "darker": "#345F87",
         "background": "#E5F2FF",
-        "secondary-bg": "#F3F5F6"
+        "secondary-bg": "#F3F5F6",
+        'crabBlue': '#e4f2ff',
+        'crabOrange': '#f89734',
       }
     },
   },

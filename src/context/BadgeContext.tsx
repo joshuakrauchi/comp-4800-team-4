@@ -1,30 +1,26 @@
 import React, { createContext, useState } from "react";
 
 /**
- * Cringe.
+ * Arguably the most beautiful piece of code in this whole project. <3
  */
 const BadgeContext = createContext({} as any);
 
 /**
  * Used to check input.
  */
-const BadgeNames: readonly string[] = [
-  "One", "Two", "Three", "Four"
-];
+const BadgeNames: readonly string[] = ["One", "Two", "Three", "Four"];
 
 //This is the actual use case for 'any'.
 //The children/props of this element can be anything because
 //it is at the highest level of the DOM.
 const BadgeProvider = (props: any): JSX.Element => {
   const storage: string[] = JSON.parse(
-    localStorage.getItem("badges")
-    ||
-    JSON.stringify({badges: []})
+    localStorage.getItem("badges") || JSON.stringify({ badges: [] })
   ).badges;
   const [badges, setBadges] = useState<string[]>(storage);
 
   /**
-   * 
+   *
    * @param badgeName Strings: "One", "Two", "Three", "Four"
    * @returns Nothing.
    */
@@ -35,7 +31,7 @@ const BadgeProvider = (props: any): JSX.Element => {
   };
 
   /**
-   * 
+   *
    * @param badgeName Strings: "One", "Two", "Three", "Four"
    * @returns True if badge can be added to badges, false if it cannot.
    */
@@ -51,11 +47,20 @@ const BadgeProvider = (props: any): JSX.Element => {
      const CheckBadge = (badgeName: string): boolean => {
       return badges.includes(badgeName) === true;
     };
+  const GetFoundBadges = (): boolean[] => {
+    let foundBadges: boolean[] = [];
+    BadgeNames.forEach((value: string) => {
+      foundBadges.push(badges.includes(value));
+    });
+
+    return foundBadges;
+  };
 
   //It's an object for scalability, in case you want to add more!
   const BadgeContextValue = {
     AddBadge,
-    CheckBadge
+    CheckBadge,
+    GetFoundBadges,
   };
 
   return <BadgeContext.Provider value={BadgeContextValue} {...props} />;

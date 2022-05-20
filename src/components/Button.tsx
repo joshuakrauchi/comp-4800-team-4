@@ -10,7 +10,7 @@ const Button = (props: ButtonProp): JSX.Element => {
   const styles = {
     div: "justify-center justify-self-center flex flex-row items-center my-8",
     button:
-      `${props.buttonStyle} bg-primary rounded-xl text-white text-lg py-3 h-fit block w-5/6`,
+      `${props.buttonStyle} bg-crabOrange rounded text-white text-lg font-semibold px-12 py-3 h-fit`,
   };
 
   return (

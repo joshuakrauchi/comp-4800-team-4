@@ -1,4 +1,7 @@
-import React, { createContext, useState } from "react";
+import React, {
+  createContext,
+  useState
+} from "react";
 
 /**
  * Arguably the most beautiful piece of code in this whole project. <3
@@ -15,9 +18,11 @@ const BadgeNames: readonly string[] = ["One", "Two", "Three", "Four"];
 //it is at the highest level of the DOM.
 const BadgeProvider = (props: any): JSX.Element => {
   const storage: string[] = JSON.parse(
-    localStorage.getItem("badges") || JSON.stringify({ badges: [] })
+    localStorage.getItem("badges") || JSON.stringify({
+      badges: []
+    })
   ).badges;
-  const [badges, setBadges] = useState<string[]>(storage);
+  const [badges, setBadges] = useState < string[] > (storage);
 
   /**
    *
@@ -25,9 +30,11 @@ const BadgeProvider = (props: any): JSX.Element => {
    * @returns Nothing.
    */
   const AddBadge = (badgeName: string): void => {
-    if (badges.includes(badgeName) || !BadgeNames.includes(badgeName)) return;
+    CheckBadgeAddable(badgeName);
     setBadges([...badges, badgeName]);
-    localStorage.setItem("badges", JSON.stringify({ badges: badges }));
+    localStorage.setItem("badges", JSON.stringify({
+      badges: badges
+    }));
   };
 
   /**
@@ -35,8 +42,17 @@ const BadgeProvider = (props: any): JSX.Element => {
    * @param badgeName Strings: "One", "Two", "Three", "Four"
    * @returns True if badge can be added to badges, false if it cannot.
    */
-  const CheckBadge = (badgeName: string): boolean => {
+  const CheckBadgeAddable = (badgeName: string): boolean => {
     return !badges.includes(badgeName) && BadgeNames.includes(badgeName);
+  };
+
+  /**
+   * 
+   * @param badgeName Strings: "One", "Two", "Three", "Four"
+   * @returns Check if badgeName is in the list of badges.
+   */
+  const CheckBadge = (badgeName: string): boolean => {
+    return badges.includes(badgeName);
   };
 
   const GetFoundBadges = (): boolean[] => {
@@ -52,10 +68,16 @@ const BadgeProvider = (props: any): JSX.Element => {
   const BadgeContextValue = {
     AddBadge,
     CheckBadge,
+    CheckBadgeAddable,
     GetFoundBadges,
   };
 
-  return <BadgeContext.Provider value={BadgeContextValue} {...props} />;
+  return <BadgeContext.Provider value = {
+    BadgeContextValue
+  } {
+    ...props
+  }
+  />;
 };
 
 export default BadgeProvider;

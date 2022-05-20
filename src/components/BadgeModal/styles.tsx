@@ -5,6 +5,7 @@ const styles = {
   badgeHeader: "self-center text-3xl font-bold text-blue-600",
   badge: "badge-animation w-[350px] h-[350px] mt-10 self-center",
   badgeFooter: "self-center mt-10 text-lg font-semibold text-blue-600",
+  quizButton: "w-30 self-center justify-self-start font-bold bg-blue-600 rounded p-2",
 };
 
 export default styles;

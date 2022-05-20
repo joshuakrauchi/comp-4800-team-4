@@ -3,6 +3,7 @@ import BadgeModal from "../BadgeModal/BadgeModal";
 import Quiz from "../Quiz/quiz";
 import "../../styles/quiz.css";
 import {useState} from 'react';
+import OnboardPage from "../../pages/OnboardPage";
 
 abstract class BadgeProp {
   badge?: string;
@@ -12,12 +13,10 @@ abstract class BadgeProp {
 
 export const QRLanding = (props: BadgeProp): JSX.Element => {
   const { CheckBadge, AddBadge } = useBadge();
-  const [ state, setState ] = useState("Incomplete");
-  
-
+  const [ state, setState ] = useState("");
 
   if (/* Check localstorage for if you have been to the onboarding page */<></>) {
-    return (/*Sean's onboarding component*/ <></>);
+    return (<OnboardPage/>);
   }
 
   if (!CheckBadge(props.badgeName)) {

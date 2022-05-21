@@ -16,7 +16,7 @@ export const QRLanding = (props: BadgeProp): JSX.Element => {
   const [ state, setState ] = useState("");
 
   if (/* Check localstorage for if you have been to the onboarding page */<></>) {
-    return (<OnboardPage/>);
+    return (<OnboardPage retake={() => {setState("Incomplete")}} status={"Scanned"}/>);
   }
 
   if (!CheckBadge(props.badgeName)) {

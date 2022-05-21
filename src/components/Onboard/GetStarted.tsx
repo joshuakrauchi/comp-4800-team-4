@@ -9,13 +9,26 @@ import selection3 from "../../images/selection3.png";
 
 import styles from "./styles";
 
-const GetStarted = (): JSX.Element => {
+abstract class BadgeProp {
+  retake? : () => void;
+  status?: string;
+} 
+
+const GetStarted = (props: BadgeProp): JSX.Element => {
+  if (props.status === "Scanned") {
+    <div className={styles.onboardContainer}>
+      <img className={styles.sentinelsLabel} src={sentinels} />
+      <img className={styles.infoSnap} src={quizSnap} />
+      <img className={styles.infoCrab} src={quizCrab} />
+      <OnboardFooter state={props.retake} text="Get Started!" />
+    </div>
+  }
   return (
     <div className={styles.onboardContainer}>
       <img className={styles.sentinelsLabel} src={sentinels} />
       <img className={styles.infoSnap} src={quizSnap} />
       <img className={styles.infoCrab} src={quizCrab} />
-      <OnboardFooter link="/map" text="Get Started!" />
+      <OnboardFooter link="/" text="Get Started!" />
     </div>
   );
 };

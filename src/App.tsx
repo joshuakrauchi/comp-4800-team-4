@@ -1,21 +1,39 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import OnboardPage from "./pages/OnboardPage";
 import MapPage from "./pages/MapPage";
-import { QRLanding } from "./components/QRLanding/QRLanding"
+import { QRLanding } from "./components/QRLanding/QRLanding";
 
 import AllStampsEarned from "./pages/AllStampsEarned";
+import { useBadge } from "./context/BadgeContext";
+import ClearProgressPage from "./pages/ClearProgressPage/ClearProgressPage";
 
 const App = (): JSX.Element => {
+  const { hasFoundAllBadges } = useBadge();
+  const styles = {
+    container: "flex justify-center",
+    secondContainerBecauseWebDevDoBeLikeThat: "max-w-screen-sm w-full",
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path={"/*"} element={<OnboardPage />} />
-        <Route path={"/map"} element={<MapPage />} />
-        <Route path={"/qr"} element={<QRLanding />} />
-        <Route path={"/DownloadTheApp"} element={<AllStampsEarned />} />
-      </Routes>
-    </Router>
+    <div className={styles.container}>
+      <div className={styles.secondContainerBecauseWebDevDoBeLikeThat}>
+        <Router>
+          {hasFoundAllBadges() ? (
+            <Routes>
+              <Route path={"/*"} element={<AllStampsEarned />} />
+              <Route path={"/clearprogress"} element={<ClearProgressPage />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route path={"/*"} element={<QRLanding />} />
+              <Route path={"/map"} element={<MapPage />} />
+              <Route path={"/end"} element={<AllStampsEarned />} />
+              <Route path={"/clearprogress"} element={<ClearProgressPage />} />
+            </Routes>
+          )}
+        </Router>
+      </div>
+    </div>
   );
 };
 

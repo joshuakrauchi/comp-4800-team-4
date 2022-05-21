@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 import BadgeMap from "../components/BadgeMap/BadgeMap";
 import InfoBox from "../components/InfoBox";
@@ -7,16 +7,13 @@ import { useBadge } from "../context/BadgeContext";
 import BadgeWidget from "../components/BadgeWidget/BadgeWidget";
 
 const MapPage = (): JSX.Element => {
-  const { GetFoundBadges } = useBadge();
-  const foundBadges = useRef(GetFoundBadges());
+  const { getFoundBadges } = useBadge();
+  const foundBadges = useRef(getFoundBadges());
   const styles = {
     mainContainer:
-      "App px-10 py-8 overflow-scroll bg-background flex-col justify-center align-center h-screen w-screen",
+      "App px-10 py-8 overflow-scroll bg-background flex-col h-screen",
     headerText: "text-center text-3xl text-darker font-semibold mb-5",
-
   };
-
-  useEffect(() => {});
 
   return (
     <div className={styles.mainContainer}>
@@ -35,6 +32,13 @@ const MapPage = (): JSX.Element => {
         }}
         buttonStyle="text-3xl"
         text={"Learn More"}
+      />
+      <Button
+        onClick={() => {
+          window.location.href = "/clearprogress";
+        }}
+        buttonStyle="mt-10"
+        text={"Clear Progress"}
       />
     </div>
   );

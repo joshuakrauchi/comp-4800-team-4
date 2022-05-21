@@ -9,8 +9,8 @@ import styles from "./styles";
 const InitialInfo = (): JSX.Element => {
   return (
     <div className={styles.onboardContainer}>
-      <img className={styles.sentinelsLabel} src={sentinels} />
-      <img className={styles.talkingCrab} src={talking1} />
+      <img alt="sentinels label" className={styles.sentinelsLabel} src={sentinels} />
+      <img alt="info crab" className={styles.talkingCrab} src={talking1} />
       <OnboardFooter path={selection1} />
     </div>
   );

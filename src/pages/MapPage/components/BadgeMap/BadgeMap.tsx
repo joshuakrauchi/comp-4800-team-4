@@ -14,7 +14,7 @@ import sentinelsLabel from "../../../../images/sentinelsLabel.png";
 import styles from "./styles";
 import LayerGroup from "ol/layer/Group";
 import IconButton from "../../../../components/Buttons/IconButton/IconButton";
-import Ellipse from "../../../../images/Ellipse.png";
+import locationButton from "../../../../images/locationButton.png";
 
 const MAP_HEIGHT = "50vh";
 
@@ -70,7 +70,7 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
   }, [foundBadges]);
 
   return (
-    <div className={styles.mapContainer}>
+    <div>
       <div className={styles.mapScreen}>
         <img
           className={styles.mapLabel}
@@ -92,9 +92,8 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
             foundBadges.current
           );
         }}
-        text={"Find the next Badge!"}
-        icon={Ellipse}
-        buttonStyle=""
+        text={"Find the Next Badge!"}
+        icon={locationButton}
       />
     </div>
   );

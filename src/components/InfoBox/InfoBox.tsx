@@ -1,15 +1,14 @@
+import styles from "./styles";
+
 abstract class InfoBoxProp {
+  header?: string;
   information?: string[];
 }
 
 const IconBox = (props: InfoBoxProp): JSX.Element => {
-  const styles = {
-    div: "bg-secondary-bg rounded-3xl mx-5 px-5 pt-7 pb-2 flex-col",
-    text: "text-center text-darker pb-5 text-base",
-  };
-
   return (
-    <div className={styles.div}>
+    <div className={styles.container}>
+      <h1>{props.header}</h1>
       {(() =>
         props.information?.map((i, index): JSX.Element => {
           return (

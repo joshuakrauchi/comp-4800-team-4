@@ -1,8 +1,8 @@
 const styles = {
-  mainContainer: "App overflow-scroll bg-background h-screen text-white",
-  container: "bg-popout m-10 pb-10 rounded-lg flex flex-col",
-  header: "text-2xl font-bold text-white text-center p-7 pt-16 pb-2 align-center",
-  footer: "p-8 pt-5 pb-5 font-semibold leading-relaxed text-white text-center align-center",
+  container: "flex flex-col bg-secondary-bg m-8 p-14 rounded-3xl",
+  closeButton: "text-crabOrange text-4xl self-end p-8 -mt-16 -mr-16",
+  text: "mb-8",
+  clearButton: "my-6 drop-shadow-none underline text-2xl text-crabOrange",
 };
 
 export default styles;

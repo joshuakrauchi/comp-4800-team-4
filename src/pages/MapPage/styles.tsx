@@ -1,7 +1,7 @@
 const styles = {
-  mainContainer:
-    "App px-10 py-8 overflow-scroll bg-background flex-col h-screen",
-  headerText: "text-center text-3xl text-darker font-semibold mb-5",
+  mainContainer: "px-10 py-8 overflow-scroll bg-background flex-col h-screen",
+  clearButton:
+    "mt-32 w-2/6 flex drop-shadow-none underline text-2xl text-crabOrange",
 };
 
 export default styles;

@@ -6,7 +6,7 @@ const AllStampsEarned = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <CongratsStamp />
-      <div className="flex justify-around">
+      <div className={styles.downloadButtonContainer}>
         <Button
           text="Google Play"
           onClick={() => {
@@ -30,13 +30,14 @@ const AllStampsEarned = (): JSX.Element => {
           window.open("https://sentinels.hakai.org/about");
         }}
       />
-      <Button
+      <button
+        className={styles.clearButton}
         onClick={() => {
           window.location.href = "/clearprogress";
         }}
-        buttonStyle="mt-10"
-        text={"Clear Progress"}
-      />
+      >
+        Clear Progress
+      </button>
     </div>
   );
 };

@@ -108,6 +108,7 @@ const createMap = (): Map => {
   // on the bottom right and replace them with a collapsible button.
   const attribution = new Attribution({
     collapsible: true,
+    expandClassName: "text-base",
   });
 
   const mapControls = defaultControls({

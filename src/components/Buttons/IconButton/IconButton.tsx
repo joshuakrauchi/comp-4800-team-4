@@ -1,3 +1,4 @@
+import styles from "./styles";
 import Button, { ButtonProp } from "../Button/Button";
 import Missing from "../../../images/missing.png";
 
@@ -11,18 +12,12 @@ const IconButton = (
     icon: Missing,
   }
 ): JSX.Element => {
-  const styles = {
-    container:
-      "flex flex-row w-full basis-full flex-wrap justify-center items-center",
-    image: "z-[10] mr-[-30px]",
-  };
-
   return (
     <div className={styles.container}>
       <img className={styles.image} src={props.icon} alt={"logo"} />
       <Button
         disabled={props.disabled}
-        buttonStyle={props.buttonStyle}
+        buttonStyle={props.buttonStyle + " " + styles.button}
         onClick={props.onClick}
         text={props.text}
       />

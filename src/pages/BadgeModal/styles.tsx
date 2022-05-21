@@ -1,9 +1,9 @@
 const styles = {
-  mainContainer: "App overflow-scroll bg-background h-screen text-white",
-  badgeContainer: "bg-popout m-10 pb-10 rounded-lg flex flex-col",
-  badgeHeader: "text-2xl font-bold text-white text-center p-7 pt-16 pb-2 align-center",
-  badge: "w-4/6 self-center my-10 drop-shadow-2xl",
-  badgeFooter: "p-8 pt-5 pb-5 font-semibold leading-relaxed text-white text-center align-center",
+  container: "flex flex-col bg-secondary-bg m-8 p-14 rounded-3xl",
+  badgeImage: "w-full self-center my-14 px-4 drop-shadow-2xl",
+  closeButton: "text-4xl self-end p-8 -mt-16 -mr-16 text-crabOrange",
+  retakeButton:
+    "mt-5 mb-16 drop-shadow-none underline text-2xl text-crabOrange",
 };
 
 export default styles;

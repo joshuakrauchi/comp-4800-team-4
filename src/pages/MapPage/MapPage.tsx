@@ -13,10 +13,11 @@ const MapPage = (): JSX.Element => {
 
   return (
     <div className={styles.mainContainer}>
-      <h1 className={styles.headerText}>Collect All Of The Badges!</h1>
+      <h2>Collect All Of The Badges!</h2>
       <BadgeWidget foundBadges={foundBadges.current} />
       <BadgeMap foundBadges={foundBadges.current} />
       <InfoBox
+        header="Did you know?"
         information={[
           "Monitoring the Dungeness crab gives scientists insight into how the rest of the ecosystem is doing.",
           "We are using a network of humane traps along the Salish Sea to attract Dungeness megalopae using light. Find out what we have learned about these crabs!",
@@ -26,16 +27,16 @@ const MapPage = (): JSX.Element => {
         onClick={() => {
           window.open("https://sentinels.hakai.org/about");
         }}
-        buttonStyle="text-3xl"
         text={"Learn More"}
       />
-      <Button
+      <button
         onClick={() => {
           window.location.href = "/clearprogress";
         }}
-        buttonStyle="mt-10"
-        text={"Clear Progress"}
-      />
+        className={styles.clearButton}
+      >
+        Clear Progress
+      </button>
     </div>
   );
 };

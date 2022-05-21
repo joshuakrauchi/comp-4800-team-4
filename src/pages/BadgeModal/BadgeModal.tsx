@@ -34,44 +34,56 @@ const BadgeModal = (props: QuizResults): JSX.Element => {
     switch (props.currentBadgeState) {
       case "FailedQuiz":
         setBadgeHeader("Oh No!");
-        setBadgeFooter("Your score wasn't high enough to get the badge...");
+        setBadgeFooter("Your Score Was Too Low...");
         break;
       case "AlreadyCompleted":
-        setBadgeHeader(`${props.badgeName}`);
-        setBadgeFooter(`You've already received the ${props.badgeName} badge!`);
+        setBadgeHeader("Complete!");
+        setBadgeFooter(`You've Already Received the ${props.badgeName} Badge!`);
         break;
       case "JustCompleted":
-        setBadgeHeader(`Congratulations!`);
-        setBadgeFooter(
-          `You've won the ${props.badgeName} badge!`
-        );
+        setBadgeHeader("Congratulations!");
+        setBadgeFooter(`You've Received the ${props.badgeName} Badge!`);
         break;
     }
   }, [props.badgeName, props.currentBadgeState]);
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.badgeContainer}>
+    <div>
+      <div className={styles.container}>
+        <button
+          className={styles.closeButton}
+          onClick={() => {
+            window.location.href = "/map";
+          }}
+        >
+          X
+        </button>
+        <h1>{badgeHeader}</h1>
         <img
           alt="badge"
           className={
-            styles.badge +
+            styles.badgeImage +
             (props.currentBadgeState === "FailedQuiz"
               ? " grayscale blur-sm"
               : " badge-animation")
           }
           src={badgeURL}
         />
-        <h1 className={styles.badgeHeader}>{badgeHeader}</h1>
-        <h2 className={styles.badgeFooter}>{badgeFooter}</h2>
+        <h2>{badgeFooter}</h2>
       </div>
       <Button
         onClick={() => {
           window.location.href = "/map";
         }}
-        text="Back to the Map"
+        text={
+          props.currentBadgeState === "FailedQuiz"
+            ? "Go Back to the Map"
+            : "Find the Next Badge"
+        }
       />
-      <Button onClick={props.retake} text="Take the Quiz Again" />
+      <button className={styles.retakeButton} onClick={props.retake}>
+        Retake Quiz
+      </button>
     </div>
   );
 };

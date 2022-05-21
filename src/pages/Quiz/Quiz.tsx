@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { data } from "../../data/quizData";
 import Button from "../../components/Buttons/Button/Button";
+import styles from "./styles";
 
 interface IQuizProps {
   badgeName: string;
@@ -62,21 +63,21 @@ const Quiz = (props: IQuizProps): JSX.Element => {
       />
     </div>
   ) : (
-    <div className="bg-[#CFD4D9] flex flex-col h-screen">
-      <h2 className="text-center font-bold w-[80%] self-center py-5 text-xl">
-        {question}
-      </h2>
-      <div className="flex flex-col">
+    <div className={styles.quizContainer}>
+      <span className={styles.question}>{question}</span>
+      <div className={styles.questionContainer}>
         {options.map((option, index) => (
           <div
-            className={`cursor-pointer self-center flex flex-row w-[85%] space-x-4 rounded-lg ${
-              userAnswer === option ? "bg-[#F89734]" : "bg-white"
-            } my-3 py-3 px-3`}
+            className={
+              styles.answer +
+              " " +
+              (userAnswer === option ? "bg-crabOrange" : "bg-white")
+            }
             key={index}
             onClick={() => CheckAnswer(option)}
           >
-            <p className="font-bold">{`${letteredOptions[index]}.`}</p>
-            <p className="font-normal">{option}</p>
+            <p className={styles.questionLetter}>{`${letteredOptions[index]}.`}</p>
+            <p>{option}</p>
           </div>
         ))}
       </div>
@@ -97,9 +98,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
             buttonStyle="disabled:opacity-75"
           />
         )}
-        <span className="self-center">{`${currentIndex} / ${
-          data.length - 1
-        }`}</span>
+        <span>{`${currentIndex} / ${data.length - 1}`}</span>
       </div>
     </div>
   );

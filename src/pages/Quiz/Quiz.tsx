@@ -48,46 +48,56 @@ const Quiz = (props: IQuizProps): JSX.Element => {
   }, [currentIndex]);
 
   return quizEnd ? (
-    <div>
-      <h1>Game Over. Final score is {score} points!</h1>
-      <p>The correct answers are:</p>
-      <ul>
-        {data.map((item, index) => (
-          <li key={index}>{item.answer}</li>
-        ))}
-      </ul>
-      <Button
-        disabled={false}
-        onClick={() => props.onComplete(score === data.length - 1)}
-        text="Get Badge"
-      />
+    <div className="flex flex-col h-screen">
+      <h1>Game Over!</h1>
+      <span>You scored</span>
+      <div className="h-[90%] flex flex-col justify-end">
+        <h1
+          className={`font-bold text-9xl ${
+            score === data.length - 1 ? "text-crabOrange" : null
+          }`}
+        >
+          {score}
+        </h1>
+      </div>
+      <div className="h-[100%] flex flex-col justify-end">
+        <Button
+          disabled={false}
+          onClick={() => props.onComplete(score === data.length - 1)}
+          text={score === data.length - 1 ? "Get Badge" : "Next"}
+          buttonStyle="self-end"
+        />
+      </div>
     </div>
   ) : (
     <div className={styles.quizContainer}>
-      <span className={styles.question}>{question}</span>
+      <div className="w-[100%] h-[15%] flex flex-col self-center justify-start">
+        <p className={styles.question}>{question}</p>
+      </div>
       <div className={styles.questionContainer}>
         {options.map((option, index) => (
           <div
-            className={
-              styles.answer +
-              " " +
-              (userAnswer === option ? "bg-crabOrange" : "bg-white")
-            }
+            className={`
+              ${styles.answer}
+              ${userAnswer === option ? "bg-crabOrange" : "bg-white"}
+            `}
             key={index}
             onClick={() => CheckAnswer(option)}
           >
-            <p className={styles.questionLetter}>{`${letteredOptions[index]}.`}</p>
+            <p
+              className={styles.questionLetter}
+            >{`${letteredOptions[index]}.`}</p>
             <p>{option}</p>
           </div>
         ))}
       </div>
-      <div className="flex flex-col pt-6">
+      <div className="h-fit flex flex-col pt-6 justify-center">
         {currentIndex < data.length - 1 && (
           <Button
             text="Next Question"
             onClick={NextQuestion}
             disabled={disabled}
-            buttonStyle="disabled:opacity-75"
+            buttonStyle="disabled:opacity-75 self-end"
           />
         )}
         {currentIndex === data.length - 1 && (
@@ -95,7 +105,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
             text="See Results"
             onClick={EndGame}
             disabled={disabled}
-            buttonStyle="disabled:opacity-75"
+            buttonStyle="disabled:opacity-75 self-end"
           />
         )}
         <span>{`${currentIndex} / ${data.length - 1}`}</span>

@@ -13,7 +13,7 @@ const Button = (props: ButtonProp): JSX.Element => {
       <button
         disabled={props.disabled}
         onClick={props.onClick}
-        className={props.buttonStyle + " " + styles.button}
+        className={`${styles.button} ${props.buttonStyle}`}
       >
         {props.text}
       </button>

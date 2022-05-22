@@ -1,5 +1,5 @@
 import styles from "./styles";
-import Button from "../../components/Button";
+import Button from "../../components/Buttons/Button/Button";
 
 const ClearProgressPage = (): JSX.Element => {
   const clearProgress = (): void => {
@@ -8,22 +8,27 @@ const ClearProgressPage = (): JSX.Element => {
   };
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.container}>
-        <h1 className={styles.header}>
-          Are you sure you want to clear your progress?
-        </h1>
-        <h2 className={styles.footer}>
-          This can't be undone! You'll have to start all over.
-        </h2>
-      </div>
+    <div className={styles.container}>
+      <button
+        className={styles.closeButton}
+        onClick={() => {
+          window.location.href = "/map";
+        }}
+      >
+        X
+      </button>
+      <h1 className={styles.text}>
+        Are you sure you want to clear all your badges?
+      </h1>
       <Button
         onClick={() => {
           window.location.href = "/map";
         }}
-        text="No, take me back!"
+        text="No, Back to the Walk"
       />
-      <Button buttonStyle="mt-20 bg-secondary" onClick={clearProgress} text="Yes, clear my progress" />
+      <button className={styles.clearButton} onClick={clearProgress}>
+        Yes, clear my badges
+      </button>
     </div>
   );
 };

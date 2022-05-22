@@ -1,5 +1,5 @@
-import PinData from "../components/BadgeMap/Utilities/PinData";
-import MapImageData from "../components/BadgeMap/Utilities/MapImageData";
+import PinData from "../pages/MapPage/components/BadgeMap/utilities/PinData";
+import MapImageData from "../pages/MapPage/components/BadgeMap/utilities/MapImageData";
 import crab1 from "../images/crab1.png";
 import crab2 from "../images/crab2.png";
 import crab3 from "../images/crab3.png";
@@ -11,8 +11,8 @@ import boulder from "../images/boulder.png";
 
 const CRAB_SCALE = 1.0;
 const CRAB_OPACITY = 0.8;
-const BADGE_SCALE = 0.25;
-const BADGE_OPACITY = 0.8;
+const BADGE_SCALE = 0.1;
+const BADGE_OPACITY = 0.9;
 
 const pinData: PinData[] = [
   new PinData(

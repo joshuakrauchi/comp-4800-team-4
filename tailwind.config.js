@@ -7,12 +7,10 @@ module.exports = {
       colors: {
         "primary": "#42A2AF",
         "secondary": "#81CCCC",
-        "popout": "#F89734",
+        'crabOrange': '#F89734',
         "darker": "#345F87",
         "background": "#E5F2FF",
         "secondary-bg": "#F3F5F6",
-        'crabBlue': '#e4f2ff',
-        'crabOrange': '#f89734',
       }
     },
   },

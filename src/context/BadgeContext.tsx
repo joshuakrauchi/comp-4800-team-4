@@ -36,7 +36,7 @@ const BadgeProvider = (props: any): JSX.Element => {
    * @returns Nothing.
    */
   const addBadge = (badgeName: string): void => {
-    setBadges([...badges, badgeName])
+    setBadges([...badges, badgeName]);
   };
 
   /**
@@ -50,7 +50,7 @@ const BadgeProvider = (props: any): JSX.Element => {
         badges: badges,
       })
     );
-  }, [badges])
+  }, [badges]);
 
   /**
    *
@@ -81,7 +81,7 @@ const BadgeProvider = (props: any): JSX.Element => {
 
   const hasFoundAllBadges = (): boolean => {
     return badges.length === BadgeNames.length;
-  }
+  };
 
   //It's an object for scalability, in case you want to add more!
   const BadgeContextValue = {
@@ -91,7 +91,7 @@ const BadgeProvider = (props: any): JSX.Element => {
     getFoundBadges,
     setOnboardingComplete,
     isOnboardingComplete,
-    hasFoundAllBadges
+    hasFoundAllBadges,
   };
 
   return <BadgeContext.Provider value={BadgeContextValue} {...props} />;

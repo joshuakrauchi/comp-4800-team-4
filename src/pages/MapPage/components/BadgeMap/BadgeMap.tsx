@@ -27,7 +27,9 @@ const BadgeMap = (props: IBadgeMapProps): JSX.Element => {
   const map = useRef(createMap());
   const backgroundLayer = useRef(createBackgroundLayer());
   const userPin = useRef(createUserPin());
-  const [badgePins, setBadgePins] = useState(createBadgePins(foundBadges.current));
+  const [badgePins, setBadgePins] = useState(
+    createBadgePins(foundBadges.current)
+  );
   const initialized = useRef(false);
 
   useEffect((): void => {

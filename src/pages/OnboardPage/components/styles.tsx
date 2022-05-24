@@ -4,7 +4,7 @@ const styles = {
   onboardContainer: "back w-full h-screen bg-crabBlue flex flex-col",
   background: "outOfFocus w-full h-screen flex flex-col",
   fg: "foreground w-full h-screen flex flex-col",
-  onboardBottomText: "w-full h-screen bg-crabOrange flex flex-col",
+  onboardBottomText: "w-full bg-crabOrange flex flex-col",
   sentinelsLabel: "ml-5 mt-7 w-1/4",
   onboardFooter: "onboardFoot w-full flex flex-col",
   onboardFooterContents: "self-center mb-10",

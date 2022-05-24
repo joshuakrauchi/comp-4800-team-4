@@ -17,9 +17,9 @@ const ClearProgressPage = (): JSX.Element => {
       >
         X
       </button>
-      <h1 className={styles.text}>
+      <h2 className={styles.text}>
         Are you sure you want to clear all your badges?
-      </h1>
+      </h2>
       <Button
         onClick={() => {
           window.location.href = "/map";

@@ -26,7 +26,7 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.7rem;
 }
 
 h2 {
@@ -34,16 +34,16 @@ h2 {
 }
 
 span {
-  font-size: 2rem;
+  font-size: 1.7rem;
 }
 
 p {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
 button {
-  font-size: 2rem;
+  font-size: 1.7rem;
 }
 
 img {

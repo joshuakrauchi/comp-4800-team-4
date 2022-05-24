@@ -1,5 +1,5 @@
-import { Outlet, Link } from "react-router-dom";
-import Button from "../../../components/Buttons/Button/Button"
+import { Outlet } from "react-router-dom";
+import Button from "../../../components/Buttons/Button/Button";
 import styles from "./styles";
 import "./onboard.css";
 import { useBadge } from "../../../context/BadgeContext";
@@ -15,19 +15,23 @@ const OnboardFooter = (prop: FooterProp): JSX.Element => {
   if (prop.link == null) {
     return (
       <footer className={styles.onboardFooter}>
-        <img alt="footer" className={styles.onboardFooterContents} src={prop.path} />
+        <img
+          alt="footer"
+          className={styles.onboardFooterContents}
+          src={prop.path}
+        />
       </footer>
     );
   } else {
     return (
       <footer className={styles.onboardFooter}>
         <div className={styles.buttonAdjust}>
-          <Link to={prop.link} className={styles.onboardFooterContents}>
-            <Button onClick={() => {
+          <Button
+            onClick={() => {
               setOnboardingComplete();
-              window.location.href="/map"
-              }} text={prop.text} />
-          </Link>
+            }}
+            text={prop.text}
+          />
           <Outlet />
         </div>
       </footer>

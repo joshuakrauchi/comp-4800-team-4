@@ -121,7 +121,7 @@ const createMap = (): Map => {
     zoom: MAP_INITIAL_ZOOM,
     minZoom: MAP_MINIMUM_ZOOM,
     maxZoom: MAP_MAXIMUM_ZOOM,
-    extent: MAP_EXTENT,
+    //extent: MAP_EXTENT,
   });
 
   const createdMap = new Map({

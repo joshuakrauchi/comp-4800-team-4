@@ -1,21 +1,46 @@
-# Tailwind CSS example
+### Hakai Institute / Sentinels of Change
+### Crab Life Cycle Walk
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
+# Authors
+Gaurav Kochar
+Joshua Krauchi
+Mazin Marwan
+Mo Baydoun
+Pariya Kasaeian
+Sean Clayton
 
-## 🚀 How to use
+# Tech Stack
+Created with React, Tailwind CSS, and the OpenLayers map API.
 
-- Install with `yarn` or `npm install`.
-- Run `expo start` to try it out.
+# How to Run
+1. Go to the root directory in a command line interface.
+2. Run `npm i --force` to install packages.
+3. Run `npm start` to open the application in your browser, on localhost:3000.
 
-## 📝 Notes
+# Folder structure
+./public          - Holds regular standard site data such as the index.html file.
+./src             - Holds all React components, data, and images.
+./src/components  - Holds general-purpose React components that can be used across multiple pages.
+./src/context     - Holds the React context component for data that is shared among multiple components.
+./src/data        - Holds data about the badge map pins and the trivia questions.
+./src/images      - Holds all the images used in the application.
+./src/pages       - Holds all the bespoke components used in the application.
+./src/styles      - Holds styling that affects the whole application.
+./App.tsx         - Renders every individual page and routes the application's pages.
+./index.tsx       - Renders the App component and attaches itself to the DOM.
 
-- This example using the [`tailwind-rn`](https://github.com/vadimdemedes/tailwind-rn) library to allow you to use [Tailwind CSS](https://tailwindcss.com/) in React Native.
-- You can even customize it to use your own styles or colors. Read more about that [here](https://github.com/vadimdemedes/tailwind-rn#customization).
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs/utility-first).
+### HOW TO CHANGE DATA
+
+# Changing badge position
+To change the coordinate location of each one of the badges, navigate to:
+./src/data
+Open the file "pinData.tsx".
+There is an array of type PinData[] which holds data about each badge,
+including the latitude/longitude location of that badge.
+Change these numbers to fit your needs.
+
+# Changing trivia questions
+To change what questions can show in the trivia portion of the app, navigate to:
+./src/data
+Open the file "quizData.js".
+The questions are in JSON format. Just follow the current format and add/edit questions as needed.

@@ -11,17 +11,25 @@ const Landing = (): JSX.Element => {
   return (
     <div className={styles.onboardContainer}>
       <div className={styles.background}>
-        <img alt="landing rounds" className={styles.landingRounds} src={rounds} />
+        <img
+          alt="landing rounds"
+          className={styles.landingRounds}
+          src={rounds}
+        />
       </div>
       <div className={styles.fg}>
-        <img alt="sentinels label" className={styles.sentinelsLabel} src={sentinels} />
+        <img
+          alt="sentinels label"
+          className={styles.sentinelsLabel}
+          src={sentinels}
+        />
         <h1 className={styles.landingHeader}>Welcome!</h1>
         <img alt="info crab" className={styles.landingCrab} src={adult} />
         <div className={styles.onboardBottomText}>
           <h2 className={styles.landingFooter1}>Dungeness Crab</h2>
           <h3 className={styles.landingFooter2}>Life Cycle Walk</h3>
-          <OnboardFooter path={selection1} />
         </div>
+        <OnboardFooter path={selection1} />
       </div>
     </div>
   );

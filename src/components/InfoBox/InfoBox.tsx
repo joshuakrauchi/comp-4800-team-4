@@ -8,7 +8,7 @@ abstract class InfoBoxProp {
 const IconBox = (props: InfoBoxProp): JSX.Element => {
   return (
     <div className={styles.container}>
-      <h1>{props.header}</h1>
+      <h2>{props.header}</h2>
       {(() =>
         props.information?.map((i, index): JSX.Element => {
           return (

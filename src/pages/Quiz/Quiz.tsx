@@ -49,7 +49,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
 
   return quizEnd ? (
     <div className="flex flex-col h-screen">
-      <h1>Game Over!</h1>
+      <h1>Quiz Done!</h1>
       <span>You scored</span>
       <div className="h-[90%] flex flex-col justify-end">
         <h1
@@ -72,7 +72,7 @@ const Quiz = (props: IQuizProps): JSX.Element => {
   ) : (
     <div className={styles.quizContainer}>
       <div className="w-[100%] h-[15%] flex flex-col self-center justify-start">
-        <p className={styles.question}>{question}</p>
+        <span className={styles.question}>{question}</span>
       </div>
       <div className={styles.questionContainer}>
         {options.map((option, index) => (

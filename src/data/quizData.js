@@ -23,34 +23,34 @@ export const data = [
     answer: "Land crabs? Never heard anything so stupid in my life!",
     difficulty: "2",
   },
-  {
-    id: "3",
-    question:
-      "Like insects, crab shells are made of a hard material called chitin. Can you guess which of these things is also made out of chitin?",
-    options: ["Trees", "Seaweed", "Mushrooms", "Sand"],
-    answer: "Seaweed",
-    difficulty: "4",
-  },
-  {
-    id: "4",
-    question:
-      "What crab-related fluid is very expensive? Honestly - it's about £10,000 a litre!",
-    options: [
-      "Fiddler crab tears",
-      "Snow crab wee",
-      "Blue crab sweat",
-      "Horseshoe crab blood",
-    ],
-    answer: "Horseshoe crab blood",
-    difficulty: "4",
-  },
-  {
-    id: "5",
-    question: "What's the fancy name for a crab's shell?",
-    options: ["Armour", "Plating", "Ectoskeleton", "Exoskeleton"],
-    answer: "Ectoskeleton",
-    difficulty: "3",
-  },
+  // {
+  //   id: "3",
+  //   question:
+  //     "Like insects, crab shells are made of a hard material called chitin. Can you guess which of these things is also made out of chitin?",
+  //   options: ["Trees", "Seaweed", "Mushrooms", "Sand"],
+  //   answer: "Seaweed",
+  //   difficulty: "4",
+  // },
+  // {
+  //   id: "4",
+  //   question:
+  //     "What crab-related fluid is very expensive? Honestly - it's about £10,000 a litre!",
+  //   options: [
+  //     "Fiddler crab tears",
+  //     "Snow crab wee",
+  //     "Blue crab sweat",
+  //     "Horseshoe crab blood",
+  //   ],
+  //   answer: "Horseshoe crab blood",
+  //   difficulty: "4",
+  // },
+  // {
+  //   id: "5",
+  //   question: "What's the fancy name for a crab's shell?",
+  //   options: ["Armour", "Plating", "Ectoskeleton", "Exoskeleton"],
+  //   answer: "Ectoskeleton",
+  //   difficulty: "3",
+  // },
   // {
   //   id: "6",
   //   question: "A lobster is just a type of weird looking crab. True or false?",
